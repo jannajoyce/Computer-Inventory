@@ -24,7 +24,7 @@
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item"><a class="nav-link active" href='/dashboard'><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item"></li>
+                <li class="nav-item"><a class="nav-link active" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/items'><i class="fas fa-table"></i><span>Inventories</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
             </ul>
