@@ -22,7 +22,7 @@
                         <div class="col-lg-6">
                             <div class="p-5" style="margin-top: initial;">
                                 <div class="text-center">
-                                    <h4 class="text-dark mb-4" style="color: rgb(135, 135, 150);margin-bottom: 24px;margin-top: 5px;">Welcome Back!</h4>
+                                    <h4 class="text-dark mb-4" style="color: rgb(135, 135, 150);margin-bottom: 24px;margin-top: 5px;">Welcome!</h4>
                                 </div>
                                 <form class="user" action="{{ route('login') }}" method="POST" style="margin-top: 0px;margin-bottom: 0px;padding-top: 3px;">
                                     @csrf
