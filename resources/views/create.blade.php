@@ -81,7 +81,10 @@
                             </div>
                             <div class="mb-3">
                                 <label for="remarks" class="form-label">Remarks</label>
-                                <input class="form-control" type="text" id="remarks" name="remarks" placeholder="Enter Remarks" style="margin-bottom: 15px;">
+                                <select class="form-control" id="condition" name="condition" style="margin-bottom: 15px;">
+                                    <option value="Operating">BER</option>
+                                    <option value="Not Operating">For Turn In</option>
+                                </select>
                                 @error('remarks')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror

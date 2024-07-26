@@ -27,7 +27,6 @@ require __DIR__.'/admin-auth.php';
 Route::middleware('auth')->group(function () {
     Route::get('item', [ItemController::class, 'index'])->name('dashboard');
 
-
     Route::get('item/create', [ItemController::class, 'create'])->name('item.create');
     Route::post('item', [ItemController::class, 'store'])->name('item.store');
     Route::get('item/{item}', [ItemController::class, 'show'])->name('item.show');
@@ -40,10 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', function () {
         return view('auth.login'); });
 
+    Route::get('/analytics', [AnalyticsController::class, 'index']);
 
     Route::get('/items', [ItemController::class, 'dropdown'])->name('dropdown');
+
     });
 
-    Route::get('/analytics', [AnalyticsController::class, 'index']);
+
 
 
