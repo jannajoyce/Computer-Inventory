@@ -90,7 +90,7 @@ class ItemController extends Controller
             'quantity' => 'required',
             'location' => 'required',
             'condition' => 'required|in:Operating,Not Operating',
-            'remarks' => 'required',
+            'remarks' => 'required|in:BER,For Turn In',
             'po_number' => 'required',
             'dealer' => 'required',
             'date_acquired' => 'required',
