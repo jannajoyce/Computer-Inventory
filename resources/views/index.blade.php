@@ -21,12 +21,22 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link" href='/analytics' style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item"><a class="nav-link active" href='/items'><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('analytics.user') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('dashboard') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
+
+                <!-- Updated Logout Link with Form -->
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                        @csrf
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="icon ion-log-out"></i><span>Logout</span>
+                        </a>
+                    </form>
+                </li>
             </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>
+
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">

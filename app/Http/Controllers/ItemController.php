@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -13,9 +14,8 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::paginate(10);
-        return view('index', [
-            'items' => $items
-        ]);
+
+        return view('index', ['items' => $items]);
     }
 
 
@@ -49,23 +49,39 @@ class ItemController extends Controller
             'quantity' => 'required',
             'location' => 'required',
             'condition' => 'required|in:Operating,Not Operating',
-            'remarks' => 'required',
+            'remarks' => 'required|in:BER,For Turn In',
             'po_number' => 'required',
             'dealer' => 'required',
             'date_acquired' => 'required',
         ]);
 
-        Item::create($data);
+        $user = Auth::user();
+        $user->user_items()->create($data);
+
         return redirect('/item')->with('success', 'Item added successfully!');
     }
 
     /**
      * Display the specified resource.
      */
+
+    //pwede ni gamiton for admin, click user's name then ma show ang iyang items
+
     public function show(Item $items)
     {
         //
     }
+
+
+    //only shows the user's added items
+    public function user_items()
+    {
+        $user = Auth::user();
+        $items = Item::where('user_id', $user->id)->orderBy('updated_at', 'desc')->get();
+
+        return view('index', compact('items'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +95,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
         $data = $request->validate([
             'name' => 'required',
@@ -96,8 +112,8 @@ class ItemController extends Controller
             'date_acquired' => 'required',
         ]);
 
-        $items = Item::findOrFail($id);
-        $items->update($data);
+//        $items = Item::findOrFail($id);
+        $item->update($data);
 
         return redirect('/items')->with('success', 'Item updated successfully!');
     }
