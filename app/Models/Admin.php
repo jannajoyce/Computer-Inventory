@@ -45,7 +45,7 @@ class Admin extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function items()
+    public function admin_dashboard(): HasMany
     {
         return $this->hasMany(Item::class);
     }
