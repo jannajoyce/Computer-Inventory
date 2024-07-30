@@ -82,7 +82,6 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
