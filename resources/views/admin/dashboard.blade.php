@@ -23,11 +23,11 @@
 
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link active" href='/dashboard'><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/inventories'><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href='admin/dashboard'><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='admin/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='admin/inventories'><i class="fas fa-table"></i><span>Inventories</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='admin/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='admin/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>
@@ -61,7 +61,7 @@
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-xxl-11 me-2" style="width: 315px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">RECENT ITEM ADDITIONS (Today)</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $recentAdditionsQuantity }}</span></span></div>
+                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">12</span></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-xxl-11 me-2" style="width:315px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL QUANTITY OF ITEMS</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $totalItems }}</span></span></div>
+                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">23</span></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-xxl-11 me-2" style="width: 315px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL QUANTITY OF OPERATING ITEMS</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $operatingItems }}</span></span></div>
+                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">4</span></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-xxl-11 me-2" style="width: 315px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL QUANTITY OF NOT OPERATING ITEMS</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $notOperatingItems }}</span></span></div>
+                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">5</span></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -137,17 +137,17 @@
                         </div>
                     </div>
                     <!-- Chart.js Script -->
-                    <script>
+               <!--     <script>
                         document.addEventListener('DOMContentLoaded', function () {
                             var ctx = document.getElementById('categoryChart').getContext('2d');
                             var categoryChart = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: {!! json_encode($itemsByCategory->keys()) !!},
+                                    labels: ,
                                     datasets: [{
                                         backgroundColor: "rgba(0, 0, 128)", // Navy blue with some transparency
                                         borderColor: "rgba(0, 0, 128)", // Navy blue
-                                        data: {!! json_encode($itemsByCategory->values()) !!}
+                                        data:
                                     }]
                                 },
                                 options: {
@@ -198,7 +198,7 @@
                                 }
                             });
                         });
-                    </script>
+                    </script> -->
                 </div>
             </div>
             <!-- Items by Location Distribution -->
@@ -230,18 +230,18 @@
                     </div>
                 </div>
             </div>
-
+<!--
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     var ctx = document.getElementById('locationChart').getContext('2d');
                     var locationChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: {!! json_encode($itemsByLocation->keys()) !!},
+                            labels:
                             datasets: [{
                                 backgroundColor: "rgba(0, 0, 128)",
                                 borderColor: "rgba(0, 0, 128)",
-                                data: {!! json_encode($itemsByLocation->values()) !!}
+                                data:
                             }]
                         },
                         options: {
@@ -294,7 +294,7 @@
                 });
             </script>
 
-
+-->
             <footer class="bg-white sticky-footer" style="width: 1800px;">
                 <div class="container my-auto" style="width: 1800px;">
                     <div class="text-center my-auto copyright"><span>Copyright © LogWeb 2024</span></div>

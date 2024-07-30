@@ -82,6 +82,13 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
+    public function admin_dashboard()
+    {
+        $items = Item::orderBy('updated_at', 'desc')->get();
+
+        return view('admin.dashboard', compact('items'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
