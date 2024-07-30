@@ -7,6 +7,8 @@
     <title>Edit Item</title>
     <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap')}}">
+
+<x-styleCss/>
 </head>
 
 <body class="bg-gradient-primary" style="background: var(--bs-body-color);height: 540px;">
@@ -82,11 +84,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="remarks" class="form-label">Remarks</label>
-                                <input class="form-control" type="text" id="remarks" name="remarks" value="{{ $items->remarks }}" placeholder="Enter Remarks" style="margin-bottom: 15px;">
+                                <select class="form-control" id="remarks" name="remarks" style="margin-bottom: 15px;">
+                                    <option value="BER">BER</option>
+                                    <option value="For Turn In">For Turn In</option>
+                                </select>
                                 @error('remarks')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="po_number" class="form-label">P.O. Number</label>
                                 <input class="form-control" type="text" id="po_number" name="po_number" value="{{ $items->po_number }}" placeholder="Enter P.O. Number" style="margin-bottom: 15px;">
