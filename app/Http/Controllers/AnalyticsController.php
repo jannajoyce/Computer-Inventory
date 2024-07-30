@@ -30,4 +30,53 @@ class AnalyticsController extends Controller
             ->pluck('total_quantity', 'location');
         return view('analytics', compact('totalItems', 'operatingItems', 'notOperatingItems', 'recentAdditionsQuantity', 'itemsByCategory', 'itemsByLocation'));
     }
+
+    public function index_user()
+    {
+        $user = auth()->user(); // Get the currently authenticated user
+
+        // Get today's start and end date
+        $todayStart = now()->startOfDay();
+
+        // Recent Items
+        $recentItems = Item::where('user_id', $user->id)
+            ->where('created_at', '>=', $todayStart)
+            ->get();
+        $recentAdditionsQuantity = $recentItems->sum('quantity');
+
+        // Total Items
+        $totalItems = Item::where('user_id', $user->id)->sum('quantity');
+
+        // Operating Items
+        $operatingItems = Item::where('user_id', $user->id)
+            ->where('condition', 'Operating')
+            ->sum('quantity');
+
+        // Not Operating Items
+        $notOperatingItems = Item::where('user_id', $user->id)
+            ->where('condition', 'Not Operating')
+            ->sum('quantity');
+
+        // Items by Category
+        $itemsByCategory = Item::where('user_id', $user->id)
+            ->selectRaw('name, SUM(quantity) as total_quantity')
+            ->groupBy('name')
+            ->pluck('total_quantity', 'name');
+
+        // Items by Location
+        $itemsByLocation = Item::where('user_id', $user->id)
+            ->selectRaw('location, SUM(quantity) as total_quantity')
+            ->groupBy('location')
+            ->pluck('total_quantity', 'location');
+
+        return view('analytics', compact(
+            'totalItems',
+            'operatingItems',
+            'notOperatingItems',
+            'recentAdditionsQuantity',
+            'itemsByCategory',
+            'itemsByLocation'
+        ));
+    }
+
 }

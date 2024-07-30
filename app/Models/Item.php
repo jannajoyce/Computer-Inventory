@@ -24,9 +24,9 @@ class Item extends Model
         'date_acquired',
     ];
 
-    public function admin()
+    public function user()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsTo(User::class);
     }
 }
 
