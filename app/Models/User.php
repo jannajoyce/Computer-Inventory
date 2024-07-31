@@ -46,7 +46,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function user_items(): HasMany
+    public function user_items()
     {
         return $this->hasMany(Item::class);
     }
