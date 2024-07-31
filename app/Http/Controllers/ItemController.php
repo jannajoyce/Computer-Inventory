@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,6 +83,12 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
+    public function admin_dashboard()
+    {
+        $items = Item::orderBy('updated_at', 'desc')->get();
+
+        return view('admin.dashboard', compact('items'));
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -113,9 +120,10 @@ class ItemController extends Controller
         ]);
 
 //        $items = Item::findOrFail($id);
-        $item->update($data);
+        $user = Auth::user();
+        $user->user_items()->create($data);
 
-        return redirect('/items')->with('success', 'Item updated successfully!');
+        return redirect(route('dashboard'))->with('success', 'Item updated successfully!');
     }
 
 
@@ -127,7 +135,7 @@ class ItemController extends Controller
         $items = Item::findOrFail($id);
         $items->delete();
 
-        return redirect('/items')->with('success', 'Item deleted successfully!');
+        return redirect(route('dashboard'))->with('success', 'Item deleted successfully!');
     }
 
     public function search(Request $request)
@@ -143,5 +151,25 @@ class ItemController extends Controller
             ->paginate($perPage);
 
         return view('index', compact('items'));
+    }
+
+    public function admin_search(Request $request)
+    {
+        $query = $request->input('query');
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+
+        $users = User::where('name', 'LIKE', "%$query%")
+
+            ->paginate($perPage);
+
+        return view('admin.dashboard', compact('users'));
+    }
+
+    public function admin_dropdown(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $users = User::paginate($perPage);
+
+        return view('admin.dashboard', compact('users'));
     }
 }
