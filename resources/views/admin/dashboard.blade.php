@@ -316,7 +316,8 @@
 <script src="{{ asset('js/bs-init.js') }}"></script>
 <script src="{{ asset('js/theme.js') }}"></script>
 <script src="{{ url('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
-
+    </div>
+</div>
 </body>
 
 </html>
