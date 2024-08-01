@@ -47,20 +47,20 @@
                     <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#" style="color: rgb(255, 255, 255);background: rgb(0, 0, 128);"><i class="fas fa-download fa-sm text-white-50" style="color: rgb(133, 135, 150);"></i>&nbsp;Generate Report</a>
                 </div>
 
-                <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
-                    <div class="card shadow border-start-success py-2">
-                        <div class="card-body">
-                            <div class="row align-items-center no-gutters">
-                                <div class="col-xxl-11 me-2" style="width: 310px;">
-                                    <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL USERS</span></div>
-                                    <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ number_format($totalUsers) }}</span></span></div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
+                        <div class="card shadow border-start-success py-2">
+                            <div class="card-body">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-xxl-11 me-2" style="width: 310px;">
+                                        <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL USERS</span></div>
+                                        <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ number_format($totalUsers) }}</span></span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="row">
                     <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
                         <div class="card shadow border-start-success py-2">
                             <div class="card-body">
@@ -236,6 +236,70 @@
                     </div>
                 </div>
             </div>
+
+                    <script src="{{ url('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var ctx = document.getElementById('locationChart').getContext('2d');
+                            var categoryChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: {!! json_encode($itemsByLocation->keys()) !!},
+                                    datasets: [{
+                                        backgroundColor: "rgba(0, 0, 128, 0.7)",
+                                        borderColor: "rgba(0, 0, 128)",
+                                        data: {!! json_encode($itemsByLocation->values()) !!}
+                                    }]
+                                },
+                                options: {
+                                    maintainAspectRatio: false,
+                                    plugins: {
+                                        legend: {
+                                            display: false
+                                        }
+                                    },
+                                    scales: {
+                                        x: {
+                                            grid: {
+                                                color: "rgb(234, 236, 244)",
+                                                zeroLineColor: "rgb(234, 236, 244)",
+                                                drawBorder: false,
+                                                drawTicks: false,
+                                                borderDash: ["2"],
+                                                zeroLineBorderDash: ["2"],
+                                                drawOnChartArea: false
+                                            },
+                                            ticks: {
+                                                color: "#858796",
+                                                font: {
+                                                    style: "normal"
+                                                },
+                                                padding: 20
+                                            }
+                                        },
+                                        y: {
+                                            grid: {
+                                                color: "rgb(234, 236, 244)",
+                                                zeroLineColor: "rgb(234, 236, 244)",
+                                                drawBorder: false,
+                                                drawTicks: false,
+                                                borderDash: ["2"],
+                                                zeroLineBorderDash: ["2"]
+                                            },
+                                            ticks: {
+                                                beginAtZero: true,
+                                                color: "#858796",
+                                                font: {
+                                                    style: "normal"
+                                                },
+                                                padding: 20
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    </script>
 
             <footer class="bg-white sticky-footer" style="width: 1800px;">
                 <div class="container my-auto" style="width: 1800px;">

@@ -22,13 +22,10 @@ class UserController extends Controller
         $notOperatingItems = Item::where('condition', 'Not Operating')->count();
         $operatingItems = Item::where('condition', 'Operating')->count();
         $itemsByCategory = Item::selectRaw('name, SUM(quantity) as total_quantity')->groupBy('name')->pluck('total_quantity', 'name');
-        // Items by Location
-     //   $itemsByLocation = Item::selectRaw('location, SUM(quantity) as total_quantity')
-     //       ->groupBy('location')
-     //       ->pluck('total_quantity', 'location');
+        $itemsByLocation = Item::selectRaw('location, SUM(quantity) as total_quantity')->groupBy('location')->pluck('total_quantity', 'location');
 
         return view('admin.dashboard', compact('users', 'totalUsers', 'itemsAddedToday', 'totalQuantityItems',
-                                                        'operatingItems', 'notOperatingItems', 'itemsByCategory' ));
+                                                        'operatingItems', 'notOperatingItems', 'itemsByCategory','itemsByLocation' ));
     }
 
 
