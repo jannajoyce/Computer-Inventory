@@ -152,7 +152,7 @@
                                 data: {
                                     labels: {!! json_encode($itemsByCategory->keys()) !!},
                                     datasets: [{
-                                        backgroundColor: "rgba(0, 0, 128, 0.7)",
+                                        backgroundColor: "rgba(0, 0, 128)",
                                         borderColor: "rgba(0, 0, 128)",
                                         data: {!! json_encode($itemsByCategory->values()) !!}
                                     }]
@@ -246,7 +246,7 @@
                                 data: {
                                     labels: {!! json_encode($itemsByLocation->keys()) !!},
                                     datasets: [{
-                                        backgroundColor: "rgba(0, 0, 128, 0.7)",
+                                        backgroundColor: "rgba(0, 0, 128)",
                                         borderColor: "rgba(0, 0, 128)",
                                         data: {!! json_encode($itemsByLocation->values()) !!}
                                     }]

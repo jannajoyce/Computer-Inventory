@@ -26,7 +26,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('analytics.user') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                 <li class="nav-item"><a class="nav-link active" href="{{ route('dashboard') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
 
-                <!-- Updated Logout Link with Form -->
+
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}" id="logout-form">
                         @csrf
@@ -61,19 +61,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--   <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
-                           <div class="card shadow border-start-success py-2">
-                               <div class="card-body">
-                                   <div class="row align-items-center no-gutters">
-                                       <div class="col-xxl-11 me-2" style="width: 310px;">
-                                           <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">RECENT CHANGES</span></div>
-                                           <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">215,000</span></span></div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </div> -->
 
                     <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
                         <div class="card shadow border-start-success py-2">
@@ -145,6 +132,7 @@
                     </div>
 
                     <!-- Chart.js Script -->
+                    <script src="{{ url('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
                     <script>
                         document.addEventListener('DOMContentLoaded', function () {
                             var ctx = document.getElementById('categoryChart').getContext('2d');
@@ -153,8 +141,8 @@
                                 data: {
                                     labels: {!! json_encode($itemsByCategory->keys()) !!},
                                     datasets: [{
-                                        backgroundColor: "rgba(0, 0, 128)", // Navy blue with some transparency
-                                        borderColor: "rgba(0, 0, 128)", // Navy blue
+                                        backgroundColor: "rgba(0, 0, 128)",
+                                        borderColor: "rgba(0, 0, 128)",
                                         data: {!! json_encode($itemsByCategory->values()) !!}
                                     }]
                                 },
@@ -207,8 +195,6 @@
                             });
                         });
                     </script>
-                </div>
-            </div>
                     <!-- Items by Location Distribution -->
             <div class="row">
                 <div class="col-lg-7 col-xl-8" style="width: 1800px;">
@@ -239,10 +225,12 @@
                 </div>
             </div>
 
+
+            <script src="{{ url('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     var ctx = document.getElementById('locationChart').getContext('2d');
-                    var locationChart = new Chart(ctx, {
+                    var categoryChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: {!! json_encode($itemsByLocation->keys()) !!},
