@@ -37,60 +37,79 @@
                     <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">List of Users</span></p>
                     </div>
+
+                    {{--}}List of Users--}}
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 text-nowrap">
-                                <form method="GET" action="{{ route('dropdown') }}" class="d-inline-block">
-                                    <label class="form-label">Show&nbsp;
-                                        <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
-                                            <option value="3" {{ request('per_page') == 3 ? 'selected' : '' }}>3</option>
-                                            <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
-                                            <option value="10" {{ request('per_page', 10) == 10 ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
-                                        </select>&nbsp;
-                                    </label>
-                                </form>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('search') }}">
-                                        <div class="input-group" style="width: 300px;">
-                                            <input class="form-control" type="search" name="query" placeholder="Search for...">
-                                            <button class="btn btn-primary py-0" type="submit" style="background: rgb(133, 135, 150); border: rgb(133, 135, 150); "><i class="fas fa-search"></i></button>
-                                        </div>
+                        <div class="chart-area">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <form method="GET" action="{{ route('admin.dropdown') }}" class="d-inline-block">
+                                        <label class="form-label">Show&nbsp;
+                                            <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
+                                                <option value="3" {{ request('per_page') == 3 ? 'selected' : '' }}>3</option>
+                                                <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
+                                                <option value="10" {{ request('per_page', 10) == 10 ? 'selected' : '' }}>10</option>
+                                                <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
+                                                <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
+                                                <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
+                                            </select>&nbsp;
+                                        </label>
                                     </form>
                                 </div>
-                            </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter">
+                                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('admin.search') }}">
+                                            <div class="input-group" style="width: 300px;">
+                                                <input class="form-control" type="search" name="query" placeholder="Search for...">
+                                                <button class="btn btn-primary py-0" type="submit" style="background: rgb(133, 135, 150); border: rgb(133, 135, 150); "><i class="fas fa-search"></i></button>
+                                            </div>
+                                        </form>
 
-                            @csrf
-                            @if(session()->has('success'))
-                                <div class="alert alert-success mb-3" style="padding-top: 4px;padding-bottom: 4px; color: white; background: navy;" >
-                                    {{ session()->get('success') }}
+                                    </div>
                                 </div>
-                            @endif
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 200px;">NAME</th>
-                                        <th style="width: 220px;">E-MAIL</th>
-                                        <th style="width: 150px;">ACTIONS</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($items as $item)
+
+                                @csrf
+                                @if(session()->has('success'))
+                                    <div class="alert alert-success mb-3" style="padding-top: 4px;padding-bottom: 4px; color: white; background: navy;" >
+                                        {{ session()->get('success') }}
+                                    </div>
+                                @endif
+                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                    <table class="table my-0" id="dataTable">
+                                        <thead>
                                         <tr>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->e_mail }}</td>
-                                            <td>
-                                                <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Show</a>
-                                            </td>
+                                            <th style="width: 200px;">USER</th>
+                                            <th style="width: 200px;">E-MAIL</th>
+                                            <th style="width: 150px;">ACTIONS</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <td>
+                                                    <button
+                                                        type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#userItemsModal-{{ $user->id }}"
+                                                        style="width: 100%; background: none; border: none; text-align: left; padding: 0; cursor: pointer;">
+                                                        {{ $user->name }}
+                                                    </button>
+                                                    @include('admin.user_itemsModal', ['user' => $user, 'items' => $user->user_items])
+                                                </td>
+                                                {{--                                                            <td>--}}
+                                                {{--                                                                <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>--}}
+                                                {{--                                                                <form action="{{ route('item.destroy', $item->id) }}" method="POST" style="display:inline-block;">--}}
+                                                {{--                                                                    @csrf--}}
+                                                {{--                                                                    @method('DELETE')--}}
+                                                {{--                                                                    <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);"  onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>--}}
+                                                {{--                                                                </form>--}}
+                                                {{--                                                            </td>--}}
+                                            </tr>
+                                        @endforeach
+
+                                        </tbody>
+                                    </table>
 
                                 {{--                                {{ $items->links() }}--}}
                             </div>
