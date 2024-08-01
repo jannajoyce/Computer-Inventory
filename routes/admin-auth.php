@@ -28,7 +28,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/analytics', [AnalyticsController::class, 'index_admin'])->name('admin.analytics.index');
-
 //    Route::get('/admin/dashboard', function () {
 //        return view('admin.dashboard');})->name('admin.dashboard');
 
@@ -40,5 +39,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
     Route::get('admin/dashboard/items', [ItemController::class, 'admin_dropdown'])->name('admin.dropdown');
     Route::get('admin/dashboard/search', [ItemController::class, 'admin_search'])->name('admin.search');
+
+
 
 });
