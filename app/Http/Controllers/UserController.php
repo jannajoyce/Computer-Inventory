@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::with('user_items')->paginate(10); // Eager load items with users
         $totalUsers = User::count();
-   $itemsAddedToday = Item::whereDate('created_at', Carbon::today())->count();
+        $itemsAddedToday = Item::whereDate('created_at', Carbon::today())->count();
 //        $totalItems = Item::count();
         $totalQuantityItems = Item::sum('quantity');
         $notOperatingItems = Item::where('condition', 'Not Operating')->count();
