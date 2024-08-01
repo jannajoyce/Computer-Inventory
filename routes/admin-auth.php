@@ -38,9 +38,7 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::middleware(['auth:admin'])->group(function () {
 
     Route::get('admin/dashboard', [UserController::class, 'index'])->name('admin.dashboard');
-
     Route::get('admin/dashboard/items', [ItemController::class, 'admin_dropdown'])->name('admin.dropdown');
     Route::get('admin/dashboard/search', [ItemController::class, 'admin_search'])->name('admin.search');
-
 
 });

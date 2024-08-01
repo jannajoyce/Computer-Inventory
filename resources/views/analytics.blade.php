@@ -143,6 +143,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Chart.js Script -->
                     <script>
                         document.addEventListener('DOMContentLoaded', function () {
