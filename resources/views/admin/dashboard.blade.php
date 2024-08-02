@@ -25,7 +25,7 @@
             <ul class="navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('admin.dashboard') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('admin.inventories') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.users') }}"><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
                 <li class="nav-item">
@@ -35,7 +35,8 @@
                             <i class="icon ion-log-out"></i><span>Logout</span>
                         </a>
                     </form>
-                </li>            </ul>
+                </li>
+            </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>
     </nav>

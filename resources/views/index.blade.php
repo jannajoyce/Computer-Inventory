@@ -36,8 +36,8 @@
             </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>
-
     </nav>
+
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
@@ -48,6 +48,7 @@
                     <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
                 </div>
             </nav>
+
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header py-3">

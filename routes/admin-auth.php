@@ -43,10 +43,17 @@ Route::middleware(['auth:admin'])->group(function () {
 
 
 });
+
 //Admin Inventories
 Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/inventories', [ItemController::class, 'showAllInventories'])->name('admin.inventories');
-    Route::get('admin/inventories', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
-    Route::get('admin/inventories', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
+    Route::get('admin/inventories', [ItemController::class, 'showAllInventories'])->name('admin.inventories');
+    Route::get('admin/inventories/dropdown', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
+    Route::get('admin/inventories/search', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
+});
 
+//Users
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/users', [UserController::class, 'usersIndex'])->name('admin.users');
+    Route::get('admin/users/dropdown', [ItemController::class, 'adminUsers_dropdown'])->name('adminUsers.dropdown');
+    Route::get('admin/users/search', [ItemController::class, 'adminUsers_search'])->name('adminUsers.search');
 });

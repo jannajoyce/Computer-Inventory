@@ -19,31 +19,38 @@
                 <div class="sidebar-brand-icon rotate-n-15"></div>
                 <div class="sidebar-brand-text mx-3"></div>
             </a>
+
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link" href='/analytics' style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/inventories'><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link active" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.inventories') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.users') }}"><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('admin.logout') }}" id="logout-form">
+                        @csrf
+                        <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="icon ion-log-out"></i><span>Logout</span>
+                        </a>
+                    </form>
             </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>
     </nav>
-    <div class="d-flex flex-column" id="content-wrapper">
-        <div id="content">
-            <div class="container-fluid">
-                <div class="card shadow">
-                    <div class="card-header py-3">
-                        <p class="text-primary m-0 fw-bold" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">List of Users</span></p>
-                    </div>
+
+
 
                     {{--}}List of Users--}}
+                <div class="container-fluid">
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">List of Users</span></p>
+                        </div>
                     <div class="card-body">
                         <div class="chart-area">
                             <div class="row">
                                 <div class="col-md-6 text-nowrap">
-                                    <form method="GET" action="{{ route('admin.dropdown') }}" class="d-inline-block">
+                                    <form method="GET" action="{{ route('adminUsers.dropdown') }}" class="d-inline-block">
                                         <label class="form-label">Show&nbsp;
                                             <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
                                                 <option value="3" {{ request('per_page') == 3 ? 'selected' : '' }}>3</option>
@@ -58,7 +65,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('admin.search') }}">
+                                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('adminUsers.search') }}">
                                             <div class="input-group" style="width: 300px;">
                                                 <input class="form-control" type="search" name="query" placeholder="Search for...">
                                                 <button class="btn btn-primary py-0" type="submit" style="background: rgb(133, 135, 150); border: rgb(133, 135, 150); "><i class="fas fa-search"></i></button>
@@ -78,15 +85,17 @@
                                     <table class="table my-0" id="dataTable">
                                         <thead>
                                         <tr>
+                                            <th style="width: 50px;">No.</th>
                                             <th style="width: 200px;">USER</th>
                                             <th style="width: 200px;">E-MAIL</th>
-                                            <th style="width: 150px;">ACTIONS</th>
+                                            <th style="width: 150px;">LOCATION</th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
                                         @foreach ($users as $user)
                                             <tr>
+                                                <td>{{ $user->id }}</td>
                                                 <td>
                                                     <button
                                                         type="button"
@@ -97,17 +106,10 @@
                                                     </button>
                                                     @include('admin.user_itemsModal', ['user' => $user, 'items' => $user->user_items])
                                                 </td>
-                                                {{--                                                            <td>--}}
-                                                {{--                                                                <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>--}}
-                                                {{--                                                                <form action="{{ route('item.destroy', $item->id) }}" method="POST" style="display:inline-block;">--}}
-                                                {{--                                                                    @csrf--}}
-                                                {{--                                                                    @method('DELETE')--}}
-                                                {{--                                                                    <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);"  onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>--}}
-                                                {{--                                                                </form>--}}
-                                                {{--                                                            </td>--}}
-                                            </tr>
+                                                <td>{{ $user->email }}</td>
+                                            <td>{{ $user->location }}</td>
                                         @endforeach
-
+                                        </tr>
                                         </tbody>
                                     </table>
 
@@ -140,6 +142,7 @@
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/bs-init.js')}}"></script>
     <script src="{{asset('js/theme.js')}}"></script>
+</div>
 </div>
 </body>
 

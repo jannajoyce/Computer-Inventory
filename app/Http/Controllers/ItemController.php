@@ -197,4 +197,31 @@ class ItemController extends Controller
         return view('admin.inventories', compact('items'));
     }
 
+    public function adminUsers_dropdown(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $users = User::paginate($perPage);
+
+        return view('admin.users', compact('users'));
+    }
+
+    public function adminUsers_search(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $query = $request->input('query', ''); // Default to an empty string if not specified
+
+        $users = User::with('user_items');
+
+        if ($query) {
+            $users->where(function($q) use ($query) {
+                $q->where('name', 'LIKE', "%$query%")
+                    ->orWhere('email', 'LIKE', "%$query%");
+            });
+        }
+
+        $users = $users->orderBy('updated_at', 'desc')->paginate($perPage);
+
+        return view('admin.users', compact('users', 'query', 'perPage'));
+    }
+
 }
