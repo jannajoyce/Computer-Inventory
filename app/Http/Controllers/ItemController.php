@@ -64,7 +64,7 @@ class ItemController extends Controller
         // Log the activity
         Activity::create([
             'user_id' => $user->id,
-            'description' => 'Added an item: ' . $data['name'],
+            'description' => 'added an item: ' . $data['name'],
         ]);
 
         return redirect('/item')->with('success', 'Item added successfully!');
@@ -135,7 +135,7 @@ class ItemController extends Controller
 
         Activity::create([
             'user_id' => auth()->id(),
-            'description' => 'Edited an item',
+            'description' => 'edited an item: ' . $data['name'],
         ]);
 
         return redirect(route('dashboard'))->with('success', 'Item updated successfully!');
@@ -147,8 +147,17 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $items = Item::findOrFail($id);
-        $items->delete();
+        // Retrieve the item to be deleted
+        $item = Item::findOrFail($id);
+
+        // Log the activity before deleting the item
+        Activity::create([
+            'user_id' => auth()->id(),
+            'description' => 'deleted an item: ' . $item->name,
+        ]);
+
+        // Delete the item
+        $item->delete();
 
         return redirect(route('dashboard'))->with('success', 'Item deleted successfully!');
     }

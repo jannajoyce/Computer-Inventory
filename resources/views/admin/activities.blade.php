@@ -56,11 +56,12 @@
                                     @forelse ($activities as $activity)
                                         <li class="list-group-item">
                                             <strong>{{ $activity->created_at->diffForHumans() }}:</strong>
-                                            {{ $activity->user->name }} - {{ $activity->description }}
+                                            <span style="color: navy;">{{ $activity->user->name }} {{ $activity->description }}</span>
                                         </li>
                                     @empty
                                         <li class="list-group-item">No activities found.</li>
                                     @endforelse
+
                                 </ul>
                             </div>
 
