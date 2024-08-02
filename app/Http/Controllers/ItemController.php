@@ -27,6 +27,7 @@ class ItemController extends Controller
 
         return view('index', compact('items'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -62,6 +63,7 @@ class ItemController extends Controller
         return redirect('/item')->with('success', 'Item added successfully!');
     }
 
+
     /**
      * Display the specified resource.
      */
@@ -83,12 +85,13 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
-    public function admin_dashboard()
+    public function showAllInventories()
     {
         $items = Item::orderBy('updated_at', 'desc')->get();
 
-        return view('admin.dashboard', compact('items'));
+        return view('admin.inventories', compact('items'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -159,17 +162,39 @@ class ItemController extends Controller
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
 
         $users = User::where('name', 'LIKE', "%$query%")
-
             ->paginate($perPage);
 
         return view('admin.dashboard', compact('users'));
     }
 
-    public function admin_dropdown(Request $request)
+    public function adminInventories_search(Request $request)
     {
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
-        $users = User::paginate($perPage);
+        $query = $request->input('query', ''); // Default to an empty string if not specified
 
-        return view('admin.dashboard', compact('users'));
+        $items = Item::query();
+
+        if ($query) {
+            $items->where(function($q) use ($query) {
+                $q->where('name', 'LIKE', "%$query%")
+                    ->orWhere('brand', 'LIKE', "%$query%")
+                    ->orWhere('property_number', 'LIKE', "%$query%")
+                    ->orWhere('location', 'LIKE', "%$query%")
+                    ->orWhere('dealer', 'LIKE', "%$query%");
+            });
+        }
+
+        $items = $items->orderBy('updated_at', 'desc')->paginate($perPage);
+
+        return view('admin.inventories', compact('items', 'query', 'perPage'));
     }
+
+    public function adminInventories_dropdown(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $items = Item::orderBy('updated_at', 'desc')->paginate($perPage);
+
+        return view('admin.inventories', compact('items'));
+    }
+
 }

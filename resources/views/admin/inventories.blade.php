@@ -21,10 +21,10 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link" href='/analytics' style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.inventories') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/inventories'><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link active" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline"></div>
@@ -35,7 +35,6 @@
             <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                 <div class="container-fluid">
                     <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;">
-                        <div class="input-group" style="width: 300px;"><a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{route('item.create')}}">ADD NEW ITEM</a></div>
                     </form>
                     <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
                 </div>
@@ -48,8 +47,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <form method="GET" action="{{ route('dropdown') }}" class="d-inline-block">
-                                    <label class="form-label">Show&nbsp;
+                                <form method="GET" action="{{ route('admin.inventories') }}" class="d-inline-block">
+                                    <label class="form-label">Show&nbsp
                                         <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
                                             <option value="3" {{ request('per_page') == 3 ? 'selected' : '' }}>3</option>
                                             <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
@@ -57,15 +56,15 @@
                                             <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
                                             <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
                                             <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
-                                        </select>&nbsp;
+                                        </select>&nbsp
                                     </label>
                                 </form>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('search') }}">
+                                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('adminInventories.search') }}">
                                         <div class="input-group" style="width: 300px;">
-                                            <input class="form-control" type="search" name="query" placeholder="Search for...">
+                                            <input class="form-control" type="search" name="query" placeholder="Search for..." value="{{ request('query', '') }}">
                                             <button class="btn btn-primary py-0" type="submit" style="background: rgb(133, 135, 150); border: rgb(133, 135, 150); "><i class="fas fa-search"></i></button>
                                         </div>
                                     </form>
@@ -74,11 +73,9 @@
                             </div>
 
                             @csrf
-                            @if(session()->has('success'))
-                                <div class="alert alert-success mb-3" style="padding-top: 4px;padding-bottom: 4px; color: white; background: navy;" >
-                                    {{ session()->get('success') }}
-                                </div>
-                            @endif
+                            @if($items->isEmpty())
+                                <p>No items found for this user.</p>
+                            @else
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                 <table class="table my-0" id="dataTable">
                                     <thead>
@@ -113,19 +110,12 @@
                                             <td>{{ $item->po_number }}</td>
                                             <td>{{ $item->dealer }}</td>
                                             <td>{{ $item->date_acquired }}</td>
-                                            <td>
-                                                <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>
-                                                <form action="{{ route('item.destroy', $item->id) }}" method="POST" style="display:inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);"  onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
-                                                </form>
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
-
+                                {{ $items->appends(['query' => request('query'), 'per_page' => request('per_page')])->links() }}
+                                 @endif
 {{--                                {{ $items->links() }}--}}
                             </div>
                             <div class="row">

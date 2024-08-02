@@ -28,8 +28,6 @@ class UserController extends Controller
                                                         'operatingItems', 'notOperatingItems', 'itemsByCategory','itemsByLocation' ));
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      */

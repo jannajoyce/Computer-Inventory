@@ -43,3 +43,10 @@ Route::middleware(['auth:admin'])->group(function () {
 
 
 });
+//Admin Inventories
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/inventories', [ItemController::class, 'showAllInventories'])->name('admin.inventories');
+    Route::get('admin/inventories', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
+    Route::get('admin/inventories', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
+
+});
