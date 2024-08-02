@@ -21,11 +21,17 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link" href='/analytics' style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.inventories') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
                 <li class="nav-item"><a class="nav-link" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/inventories'><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link active" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('admin.logout') }}" id="logout-form">
+                        @csrf
+                        <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="icon ion-log-out"></i><span>Logout</span>
+                        </a>
+                    </form>
             </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>

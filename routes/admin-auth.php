@@ -57,3 +57,5 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/users/dropdown', [ItemController::class, 'adminUsers_dropdown'])->name('adminUsers.dropdown');
     Route::get('admin/users/search', [ItemController::class, 'adminUsers_search'])->name('adminUsers.search');
 });
+
+//Activities

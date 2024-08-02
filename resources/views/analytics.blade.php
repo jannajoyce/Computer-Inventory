@@ -25,8 +25,6 @@
             <ul class="navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('analytics.user') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
-
-
                 <li class="nav-item">
                     <form method="POST" action="{{ route('logout') }}" id="logout-form">
                         @csrf
