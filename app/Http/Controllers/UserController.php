@@ -6,6 +6,8 @@ use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Activity;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
@@ -33,6 +35,12 @@ class UserController extends Controller
         $users = User::with('user_items')->paginate(10); // Eager load items with users
 
         return view('admin.users',compact('users'));
+    }
+
+    public function activities()
+    {
+        $activities = Activity::with('user')->orderBy('created_at', 'desc')->get();
+        return view('admin.activities', compact('activities'));
     }
     /**
      * Show the form for creating a new resource.

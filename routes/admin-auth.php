@@ -59,3 +59,6 @@ Route::middleware(['auth:admin'])->group(function () {
 });
 
 //Activities
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/activities', [UserController::class, 'activities'])->name('admin.activities');
+});

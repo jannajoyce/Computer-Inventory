@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -59,6 +60,12 @@ class ItemController extends Controller
 
         $user = Auth::user();
         $user->user_items()->create($data);
+
+        // Log the activity
+        Activity::create([
+            'user_id' => $user->id,
+            'description' => 'Added an item: ' . $data['name'],
+        ]);
 
         return redirect('/item')->with('success', 'Item added successfully!');
     }
@@ -125,6 +132,11 @@ class ItemController extends Controller
 //        $items = Item::findOrFail($id);
         $user = Auth::user();
         $user->user_items()->create($data);
+
+        Activity::create([
+            'user_id' => auth()->id(),
+            'description' => 'Edited an item',
+        ]);
 
         return redirect(route('dashboard'))->with('success', 'Item updated successfully!');
     }
