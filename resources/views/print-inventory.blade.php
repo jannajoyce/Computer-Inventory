@@ -5,16 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Print Inventory</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        h1, p {
+            text-align: center;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
         @media print {
-            body {
+            body, .container {
+                width: 100%;
                 margin: 0;
                 padding: 0;
             }
-            .container {
-                width: 100%;
+            h1 {
+                font-size: 18px;
             }
-            .no-print {
-                display: none;
+            p {
+                font-size:13px
+            }
+            table {
+                width: 100%;
+                font-size: 10px;
+            }
+            th, td {
+                padding: 4px;
             }
         }
     </style>
@@ -22,6 +57,7 @@
 <body>
 <div class="container">
     <h1>Inventory Report</h1>
+    <p>Date: {{ \Carbon\Carbon::now()->format('F j, Y') }}</p>
     <table border="1" cellpadding="5" cellspacing="0">
         <thead>
         <tr>

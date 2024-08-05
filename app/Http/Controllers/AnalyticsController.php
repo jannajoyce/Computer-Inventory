@@ -97,7 +97,8 @@ class AnalyticsController extends Controller
             'operatingItems',
             'notOperatingItems',
             'recentAdditionsQuantity',
-            'itemsByCategory'
+            'itemsByCategory',
+            'itemsByLocation',
         ));
     }
 }
