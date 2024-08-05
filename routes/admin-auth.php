@@ -62,3 +62,8 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/activities', [UserController::class, 'activities'])->name('admin.activities');
 });
+
+//Print Button
+// routes/web.php
+Route::get('/print-user-inventory', [ItemController::class, 'printInventories'])->name('print.inventories');
+
