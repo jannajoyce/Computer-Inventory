@@ -20,7 +20,6 @@ class ItemController extends Controller
         return view('index', ['items' => $items]);
     }
 
-
     public function dropdown(Request $request)
     {
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
@@ -82,7 +81,7 @@ class ItemController extends Controller
     public function print()
     {
         $items = Item::all(); // Or use any method to get the items you want to print
-        return view('print-inventory','print-user-inventory', compact('items'));
+        return view('print_inventory', compact('items'));
     }
 
     public function adminInventories_print()

@@ -28,6 +28,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/analytics', [AnalyticsController::class, 'index_admin'])->name('admin.analytics.index');
+
 //    Route::get('/admin/dashboard', function () {
 //        return view('admin.dashboard');})->name('admin.dashboard');
 

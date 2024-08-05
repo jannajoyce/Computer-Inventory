@@ -115,6 +115,100 @@
                         </div>
                     </div>
 
+                    <!-- Items by User Distribution -->
+                    <div class="row">
+                        <div class="col-lg-7 col-xl-8" style="width: 1800px;">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary fw-bold m-0" style="color: rgb(0, 0, 128);">
+                                        <span style="color: rgb(0, 0, 128);">Items by User Distribution</span>
+                                    </h6>
+                                    <div class="dropdown no-arrow">
+                                        <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
+                                            <i class="fas fa-ellipsis-v text-gray-400"></i>
+                                        </button>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                                            <p class="text-center dropdown-header">Dropdown header:</p>
+                                            <a class="dropdown-item" href="#">&nbsp;Action</a>
+                                            <a class="dropdown-item" href="#">&nbsp;Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">&nbsp;Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="userChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="{{ url('https://cdn.jsdelivr.net/npm/chart.js') }}"></script>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var ctx = document.getElementById('userChart').getContext('2d');
+                            var userChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: {!! json_encode($itemsByUser->keys()) !!},
+                                    datasets: [{
+                                        backgroundColor: "rgba(0, 0, 128)",
+                                        borderColor: "rgba(0, 0, 128)",
+                                        data: {!! json_encode($itemsByUser->values()) !!}
+                                    }]
+                                },
+                                options: {
+                                    maintainAspectRatio: false,
+                                    plugins: {
+                                        legend: {
+                                            display: false
+                                        }
+                                    },
+                                    scales: {
+                                        x: {
+                                            grid: {
+                                                color: "rgb(234, 236, 244)",
+                                                zeroLineColor: "rgb(234, 236, 244)",
+                                                drawBorder: false,
+                                                drawTicks: false,
+                                                borderDash: ["2"],
+                                                zeroLineBorderDash: ["2"],
+                                                drawOnChartArea: false
+                                            },
+                                            ticks: {
+                                                color: "#858796",
+                                                font: {
+                                                    style: "normal"
+                                                },
+                                                padding: 20
+                                            }
+                                        },
+                                        y: {
+                                            grid: {
+                                                color: "rgb(234, 236, 244)",
+                                                zeroLineColor: "rgb(234, 236, 244)",
+                                                drawBorder: false,
+                                                drawTicks: false,
+                                                borderDash: ["2"],
+                                                zeroLineBorderDash: ["2"]
+                                            },
+                                            ticks: {
+                                                beginAtZero: true,
+                                                color: "#858796",
+                                                font: {
+                                                    style: "normal"
+                                                },
+                                                padding: 20
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+
+
                     <!-- Items by Category Distribution -->
                     <div class="row">
                         <div class="col-lg-7 col-xl-8" style="width: 1800px;">

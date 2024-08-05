@@ -98,7 +98,6 @@
                                         <th style="width: 200PX;">P.O. NUMBER</th>
                                         <th style="width: 300PX;">DEALER</th>
                                         <th style="width: 200PX;">DATE ACQUIRED</th>
-                                        <th style="width: 150px;">USER</th>
                                     </tr>
                                     </thead>
                                     <tbody>
