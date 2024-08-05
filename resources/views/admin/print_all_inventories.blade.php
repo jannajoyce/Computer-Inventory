@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Print Inventory</title>
+    <title>Print All Inventories</title>
     <style>
         @media print {
             body {
@@ -22,8 +22,10 @@
 <body>
 <div class="container">
     <h1>Inventory Report</h1>
-    <table border="1" cellpadding="5" cellspacing="0">
-        <thead>
+    @foreach ($users as $user)
+        <h2>Inventory Report for {{ $user->name }}</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
         <tr>
             <th>ARTICLE/ITEM</th>
             <th>DESCRIPTION/BRAND</th>
@@ -40,7 +42,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($items as $item)
+        @foreach ($user->user_items as $item)
             <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->brand }}</td>
@@ -58,6 +60,7 @@
         @endforeach
         </tbody>
     </table>
+    @endforeach
 </div>
 <script>
     window.onload = function() {

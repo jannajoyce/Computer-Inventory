@@ -85,10 +85,10 @@ class ItemController extends Controller
         return view('print-inventory','print-user-inventory', compact('items'));
     }
 
-    public function printInventories()
+    public function adminInventories_print()
     {
-        $items = Item::all(); // Or use any method to get the items you want to print
-        return view('print-user-inventory', compact('items'));
+        $users = User::with('user_items')->get(); // Assuming the User model has a relationship 'inventories' with the Item model
+        return view('admin.print_all_inventories', compact('users'));
     }
 
 

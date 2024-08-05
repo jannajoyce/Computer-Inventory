@@ -49,6 +49,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/inventories', [ItemController::class, 'showAllInventories'])->name('admin.inventories');
     Route::get('admin/inventories/dropdown', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
     Route::get('admin/inventories/search', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
+    Route::get('admin/inventories/print', [ItemController::class, 'adminInventories_print'])->name('adminInventories.print');
 });
 
 //Users
@@ -63,8 +64,4 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/activities', [UserController::class, 'activities'])->name('admin.activities');
 });
 
-//Print Button
-// routes/web.php
-Route::middleware(['auth:admin'])->group(function () {
-Route::get('/print-user-inventory', [ItemController::class, 'printInventories'])->name('print.inventories');
-});
+
