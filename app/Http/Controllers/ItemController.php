@@ -81,6 +81,11 @@ class ItemController extends Controller
     {
         //
     }
+    public function print()
+    {
+        $items = Item::all(); // Or use any method to get the items you want to print
+        return view('print-inventory', compact('items'));
+    }
 
 
     //only shows the user's added items

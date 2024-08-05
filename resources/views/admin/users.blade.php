@@ -85,10 +85,9 @@
                                     <table class="table my-0" id="dataTable">
                                         <thead>
                                         <tr>
-                                            <th style="width: 50px;">No.</th>
+                                            <th style="width: 50px;">NO.</th>
                                             <th style="width: 200px;">USER</th>
                                             <th style="width: 200px;">E-MAIL</th>
-                                            <th style="width: 150px;">LOCATION</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -107,7 +106,6 @@
                                                     @include('admin.user_itemsModal', ['user' => $user, 'items' => $user->user_items])
                                                 </td>
                                                 <td>{{ $user->email }}</td>
-                                            <td>{{ $user->location }}</td>
                                         @endforeach
                                         </tr>
                                         </tbody>

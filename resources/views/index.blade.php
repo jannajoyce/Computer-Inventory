@@ -44,7 +44,7 @@
                     <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;">
                         <div class="input-group" style="width: 300px;"><a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{route('item.create')}}">ADD NEW ITEM</a></div>
                     </form>
-                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
+                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" onclick="window.open('{{ route('printInventory.index') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
                 </div>
             </nav>
 
