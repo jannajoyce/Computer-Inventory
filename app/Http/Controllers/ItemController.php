@@ -75,8 +75,6 @@ class ItemController extends Controller
      * Display the specified resource.
      */
 
-    //pwede ni gamiton for admin, click user's name then ma show ang iyang items
-
     public function show(Item $items)
     {
         //
@@ -84,7 +82,7 @@ class ItemController extends Controller
     public function print()
     {
         $items = Item::all(); // Or use any method to get the items you want to print
-        return view('print-inventory', compact('items'));
+        return view('print-inventory','print-user-inventory', compact('items'));
     }
 
     public function printInventories()

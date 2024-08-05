@@ -65,5 +65,6 @@ Route::middleware(['auth:admin'])->group(function () {
 
 //Print Button
 // routes/web.php
+Route::middleware(['auth:admin'])->group(function () {
 Route::get('/print-user-inventory', [ItemController::class, 'printInventories'])->name('print.inventories');
-
+});
