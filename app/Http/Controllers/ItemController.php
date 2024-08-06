@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +20,6 @@ class ItemController extends Controller
         return view('index', ['items' => $items]);
     }
 
-
     public function dropdown(Request $request)
     {
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
@@ -27,6 +27,7 @@ class ItemController extends Controller
 
         return view('index', compact('items'));
     }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -59,18 +60,34 @@ class ItemController extends Controller
         $user = Auth::user();
         $user->user_items()->create($data);
 
+        // Log the activity
+        Activity::create([
+            'user_id' => $user->id,
+            'description' => 'added an item: ' . $data['name'],
+        ]);
+
         return redirect('/item')->with('success', 'Item added successfully!');
     }
+
 
     /**
      * Display the specified resource.
      */
 
-    //pwede ni gamiton for admin, click user's name then ma show ang iyang items
-
     public function show(Item $items)
     {
         //
+    }
+    public function print()
+    {
+        $items = Item::all(); // Or use any method to get the items you want to print
+        return view('print_inventory', compact('items'));
+    }
+
+    public function adminInventories_print()
+    {
+        $users = User::with('user_items')->get(); // Assuming the User model has a relationship 'inventories' with the Item model
+        return view('admin.print_all_inventories', compact('users'));
     }
 
 
@@ -83,12 +100,13 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
-    public function admin_dashboard()
+    public function showAllInventories()
     {
         $items = Item::orderBy('updated_at', 'desc')->get();
 
-        return view('admin.dashboard', compact('items'));
+        return view('admin.inventories', compact('items'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -123,6 +141,11 @@ class ItemController extends Controller
         $user = Auth::user();
         $user->user_items()->create($data);
 
+        Activity::create([
+            'user_id' => auth()->id(),
+            'description' => 'edited an item: ' . $data['name'],
+        ]);
+
         return redirect(route('dashboard'))->with('success', 'Item updated successfully!');
     }
 
@@ -132,8 +155,17 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $items = Item::findOrFail($id);
-        $items->delete();
+        // Retrieve the item to be deleted
+        $item = Item::findOrFail($id);
+
+        // Log the activity before deleting the item
+        Activity::create([
+            'user_id' => auth()->id(),
+            'description' => 'deleted an item: ' . $item->name,
+        ]);
+
+        // Delete the item
+        $item->delete();
 
         return redirect(route('dashboard'))->with('success', 'Item deleted successfully!');
     }
@@ -159,17 +191,66 @@ class ItemController extends Controller
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
 
         $users = User::where('name', 'LIKE', "%$query%")
-
             ->paginate($perPage);
 
         return view('admin.dashboard', compact('users'));
     }
 
-    public function admin_dropdown(Request $request)
+    public function adminInventories_search(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $query = $request->input('query', ''); // Default to an empty string if not specified
+
+        $items = Item::query();
+
+        if ($query) {
+            $items->where(function($q) use ($query) {
+                $q->where('name', 'LIKE', "%$query%")
+                    ->orWhere('brand', 'LIKE', "%$query%")
+                    ->orWhere('property_number', 'LIKE', "%$query%")
+                    ->orWhere('location', 'LIKE', "%$query%")
+                    ->orWhere('dealer', 'LIKE', "%$query%");
+            });
+        }
+
+        $items = $items->orderBy('updated_at', 'desc')->paginate($perPage);
+
+        return view('admin.inventories', compact('items', 'query', 'perPage'));
+    }
+
+    public function adminInventories_dropdown(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $items = Item::orderBy('updated_at', 'desc')->paginate($perPage);
+
+        return view('admin.inventories', compact('items'));
+    }
+
+    public function adminUsers_dropdown(Request $request)
     {
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
         $users = User::paginate($perPage);
 
-        return view('admin.dashboard', compact('users'));
+        return view('admin.users', compact('users'));
     }
+
+    public function adminUsers_search(Request $request)
+    {
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $query = $request->input('query', ''); // Default to an empty string if not specified
+
+        $users = User::with('user_items');
+
+        if ($query) {
+            $users->where(function($q) use ($query) {
+                $q->where('name', 'LIKE', "%$query%")
+                    ->orWhere('email', 'LIKE', "%$query%");
+            });
+        }
+
+        $users = $users->orderBy('updated_at', 'desc')->paginate($perPage);
+
+        return view('admin.users', compact('users', 'query', 'perPage'));
+    }
+
 }

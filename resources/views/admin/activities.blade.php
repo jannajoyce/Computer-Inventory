@@ -21,11 +21,17 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link" href='/analytics' style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/users'><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/inventories'><i class="fas fa-table"></i><span>Inventories</span></a></li>
-                <li class="nav-item"><a class="nav-link active" href='/activities'><i class="fas fa-table"></i><span>Activities</span></a></li>
-                <li class="nav-item"><a class="nav-link" href='/logout'><i class="icon ion-log-out"></i><span>Logout</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.dashboard') }}" style="padding-top: 16px;"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.inventories') }}"><i class="fas fa-table"></i><span>Inventories</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('admin.users') }}"><i class="fas fa-tachometer-alt"></i><span>Users</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.activities') }}"><i class="fas fa-table"></i><span>Activities</span></a></li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('admin.logout') }}" id="logout-form">
+                        @csrf
+                        <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="icon ion-log-out"></i><span>Logout</span>
+                        </a>
+                    </form>
             </ul>
             <div class="text-center d-none d-md-inline"></div>
         </div>
@@ -40,56 +46,24 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <form method="GET" action="{{ route('dropdown') }}" class="d-inline-block">
-                                    <label class="form-label">Show&nbsp;
-                                        <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
-                                            <option value="3" {{ request('per_page') == 3 ? 'selected' : '' }}>3</option>
-                                            <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
-                                            <option value="10" {{ request('per_page', 10) == 10 ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
-                                        </select>&nbsp;
-                                    </label>
-                                </form>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('search') }}">
-                                        <div class="input-group" style="width: 300px;">
-                                            <input class="form-control" type="search" name="query" placeholder="Search for...">
-                                            <button class="btn btn-primary py-0" type="submit" style="background: rgb(133, 135, 150); border: rgb(133, 135, 150); "><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </form>
-
                                 </div>
                             </div>
+                            <div class="container">
+                                <ul class="list-group">
+                                    @forelse ($activities as $activity)
+                                        <li class="list-group-item">
+                                            <strong>{{ $activity->created_at->diffForHumans() }}:</strong>
+                                            <span style="color: navy;">{{ $activity->user->name }} {{ $activity->description }}</span>
+                                        </li>
+                                    @empty
+                                        <li class="list-group-item">No activities found.</li>
+                                    @endforelse
 
-                            @csrf
-                            @if(session()->has('success'))
-                                <div class="alert alert-success mb-3" style="padding-top: 4px;padding-bottom: 4px; color: white; background: navy;" >
-                                    {{ session()->get('success') }}
-                                </div>
-                            @endif
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 200px;">USER</th>
-                                        <th style="width: 220px;">ACTIVITY</th>
-                                        <th style="width: 220px;">DATE</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($items as $item)
-                                        <tr>
-                                            <td>{{ $item->user }}</td>
-                                            <td>{{ $item->activity }}</td>
-                                            <td>{{ $item->date_acquired }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                </ul>
+                            </div>
 
                                 {{--                                {{ $items->links() }}--}}
                             </div>

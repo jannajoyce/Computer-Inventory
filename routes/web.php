@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/analytics', [AnalyticsController::class, 'index_user'])->name('analytics.user');
 
     Route::get('/items', [ItemController::class, 'dropdown'])->name('dropdown');
-
+    Route::get('/print-inventory', [ItemController::class, 'print'])->name('printInventory.index');
     });
 
 

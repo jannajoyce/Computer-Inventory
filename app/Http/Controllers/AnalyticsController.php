@@ -87,18 +87,30 @@ class AnalyticsController extends Controller
           ->pluck('total_quantity', 'name');
 
         // Items by Location
-      //  $itemsByLocation = Item::selectRaw('location, SUM(quantity) as total_quantity')
-      //      ->groupBy('location')
-       //     ->pluck('total_quantity', 'location');
+      $itemsByLocation = Item::where('admin_id', $admin->id)
+      ->selectRaw('location, SUM(quantity) as total_quantity')
+            ->groupBy('location')
+            ->pluck('total_quantity', 'location');
+
+        //Items bu User
+        $itemsByUser = Item::where('admin_id', $admin->id)
+            ->join('users', 'items.user_id', '=', 'users.id')
+            ->selectRaw('users.name as user_name, SUM(items.quantity) as total_quantity')
+            ->groupBy('users.name')
+            ->pluck('total_quantity', 'user_name');
 
         return view('admin.dashboard', compact(
             'totalItems',
             'operatingItems',
             'notOperatingItems',
             'recentAdditionsQuantity',
-            'itemsByCategory'
+            'itemsByCategory',
+            'itemsByLocation',
+            'itemsByUser'
         ));
     }
+
+
 }
 
 

@@ -41,4 +41,28 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/dashboard/items', [ItemController::class, 'admin_dropdown'])->name('admin.dropdown');
     Route::get('admin/dashboard/search', [ItemController::class, 'admin_search'])->name('admin.search');
 
+
+
 });
+
+//Admin Inventories
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('admin/inventories', [ItemController::class, 'showAllInventories'])->name('admin.inventories');
+    Route::get('admin/inventories/dropdown', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
+    Route::get('admin/inventories/search', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
+    Route::get('admin/inventories/print', [ItemController::class, 'adminInventories_print'])->name('adminInventories.print');
+});
+
+//Users
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/users', [UserController::class, 'usersIndex'])->name('admin.users');
+    Route::get('admin/users/dropdown', [ItemController::class, 'adminUsers_dropdown'])->name('adminUsers.dropdown');
+    Route::get('admin/users/search', [ItemController::class, 'adminUsers_search'])->name('adminUsers.search');
+});
+
+//Activities
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/activities', [UserController::class, 'activities'])->name('admin.activities');
+});
+
+
