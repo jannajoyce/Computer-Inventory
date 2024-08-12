@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('item/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
 
     Route::get('/search', [ItemController::class, 'search'])->name('search');
+    Route::delete('/items/bulk-delete', [ItemController::class, 'bulkDelete'])->name('items.bulkDelete');
 
 
 //    Route::get('/logout', function () {
