@@ -98,6 +98,7 @@
                                         <th style="width: 200PX;">P.O. NUMBER</th>
                                         <th style="width: 300PX;">DEALER</th>
                                         <th style="width: 200PX;">DATE ACQUIRED</th>
+                                        <th style="width: 150px;">ACTIONS</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -115,6 +116,14 @@
                                             <td>{{ $item->po_number }}</td>
                                             <td>{{ $item->dealer }}</td>
                                             <td>{{ $item->date_acquired }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>
+                                                <form action="{{ route('admin.destroy', $item->id) }}" method="POST" style="display:inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

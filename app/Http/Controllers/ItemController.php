@@ -111,7 +111,7 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+/**  public function edit($id)
     {
         $items = Item::findOrFail($id);
         return view('edit', compact('items'));
@@ -120,7 +120,7 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Item $item)
+ /**  public function update(Request $request, Item $item)
     {
         $data = $request->validate([
             'name' => 'required',
@@ -149,11 +149,10 @@ class ItemController extends Controller
         return redirect(route('dashboard'))->with('success', 'Item updated successfully!');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+/** public function destroy($id)
     {
         // Retrieve the item to be deleted
         $item = Item::findOrFail($id);
@@ -168,6 +167,45 @@ class ItemController extends Controller
         $item->delete();
 
         return redirect(route('dashboard'))->with('success', 'Item deleted successfully!');
+    }
+*/
+
+    public function edit($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('admin.edit', compact('item'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+        $request->validate([
+            'name' => 'required',
+            'brand' => 'required',
+            'property_number' => 'required',
+            'unit' => 'required',
+            'unit_value' => 'required',
+            'quantity' => 'required',
+            'location' => 'required',
+            'condition' => 'required|in:Operating,Not Operating',
+            'remarks' => 'required|in:BER,For Turn In',
+            'po_number' => 'required',
+            'dealer' => 'required',
+            'date_acquired' => 'required',
+            // add other validation rules as needed
+        ]);
+
+        $item->update($request->all());
+
+        return redirect()->route('admin.inventories')->with('success', 'Item updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return redirect(route('admin.inventories'))->with('success', 'Item updated successfully!');
     }
 
     public function search(Request $request)

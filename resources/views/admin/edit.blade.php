@@ -19,55 +19,55 @@
                 <div class="card mb-5">
                     <div class="card-body">
                         <h2 class="text-center mb-4">EDIT ITEM</h2>
-                        <form action="{{ route('item.update', $items->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
                             <div class="mb-3">
                                 <label for="name" class="form-label">Article/Item</label>
-                                <input class="form-control" type="text" id="name" name="name" value="{{ $items->name }}" placeholder="Enter Article/Item" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="name" name="name" value="{{ $item->name }}" placeholder="Enter Article/Item" style="margin-bottom: 15px;">
                                 @error('name')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="brand" class="form-label">Description/Brand</label>
-                                <input class="form-control" type="text" id="brand" name="brand" value="{{ $items->brand }}" placeholder="Enter Description/Brand" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="brand" name="brand" value="{{ $item->brand }}" placeholder="Enter Description/Brand" style="margin-bottom: 15px;">
                                 @error('brand')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="property_number" class="form-label">Property Number</label>
-                                <input class="form-control" type="text" id="property_number" name="property_number" value="{{ $items->property_number }}" placeholder="Enter Property Number" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="property_number" name="property_number" value="{{ $item->property_number }}" placeholder="Enter Property Number" style="margin-bottom: 15px;">
                                 @error('property_number')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="unit" class="form-label">Unit</label>
-                                <input class="form-control" type="text" id="unit" name="unit" value="{{ $items->unit }}" placeholder="Enter Unit" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="unit" name="unit" value="{{ $item->unit }}" placeholder="Enter Unit" style="margin-bottom: 15px;">
                                 @error('unit')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="unit_value" class="form-label">Unit Value</label>
-                                <input class="form-control" type="text" id="unit_value" name="unit_value" value="{{ $items->unit_value }}" placeholder="Enter Unit Value" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="unit_value" name="unit_value" value="{{ $item->unit_value }}" placeholder="Enter Unit Value" style="margin-bottom: 15px;">
                                 @error('unit-value')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="quantity" class="form-label">Quantity</label>
-                                <input class="form-control" type="text" id="quantity" name="quantity" value="{{ $items->quantity }}" placeholder="Enter Quantity" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="quantity" name="quantity" value="{{ $item->quantity }}" placeholder="Enter Quantity" style="margin-bottom: 15px;">
                                 @error('quantity')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="location" class="form-label">Location</label>
-                                <input class="form-control" type="text" id="location" name="location" value="{{ $items->location }}" placeholder="Enter Location" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="location" name="location" value="{{ $item->location }}" placeholder="Enter Location" style="margin-bottom: 15px;">
                                 @error('location')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
@@ -75,8 +75,8 @@
                             <div class="mb-3">
                                 <label for="condition" class="form-label">Condition</label>
                                 <select class="form-control" id="condition" name="condition" style="margin-bottom: 15px;">
-                                    <option value="Operating" {{ $items->condition == 'Operating' ? 'selected' : '' }}>Operating</option>
-                                    <option value="Not Operating" {{ $items->condition == 'Not Operating' ? 'selected' : '' }}>Not Operating</option>
+                                    <option value="Operating" {{ $item->condition == 'Operating' ? 'selected' : '' }}>Operating</option>
+                                    <option value="Not Operating" {{ $item->condition == 'Not Operating' ? 'selected' : '' }}>Not Operating</option>
                                 </select>
                                 @error('condition')
                                 <span class="text-danger"> {{ $message }}</span>
@@ -95,21 +95,21 @@
 
                             <div class="mb-3">
                                 <label for="po_number" class="form-label">P.O. Number</label>
-                                <input class="form-control" type="text" id="po_number" name="po_number" value="{{ $items->po_number }}" placeholder="Enter P.O. Number" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="po_number" name="po_number" value="{{ $item->po_number }}" placeholder="Enter P.O. Number" style="margin-bottom: 15px;">
                                 @error('po_number')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="dealer" class="form-label">Dealer</label>
-                                <input class="form-control" type="text" id="dealer" name="dealer" value="{{ $items->dealer }}" placeholder="Enter Dealer" style="margin-bottom: 15px;">
+                                <input class="form-control" type="text" id="dealer" name="dealer" value="{{ $item->dealer }}" placeholder="Enter Dealer" style="margin-bottom: 15px;">
                                 @error('dealer')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="date_acquired" class="form-label">Date Acquired</label>
-                                <input class="form-control" type="date" id="date_acquired" name="date_acquired" value="{{ $items->date_acquired }}" style="margin-bottom: 15px;">
+                                <input class="form-control" type="date" id="date_acquired" name="date_acquired" value="{{ $item->date_acquired }}" style="margin-bottom: 15px;">
                                 @error('date_acquired')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror

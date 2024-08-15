@@ -51,6 +51,9 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/inventories/dropdown', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
     Route::get('admin/inventories/search', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
     Route::get('admin/inventories/print', [ItemController::class, 'adminInventories_print'])->name('adminInventories.print');
+    Route::get('admin/{item}/edit', [ItemController::class, 'edit'])->name('admin.edit');
+    Route::put('admin/{item}', [ItemController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/{item}', [ItemController::class, 'destroy'])->name('admin.destroy');
 });
 
 //Users

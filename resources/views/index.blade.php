@@ -90,14 +90,14 @@
                                     {{ session()->get('success') }}
                                 </div>
                             @endif
-                            <form method="POST" action="{{ route('items.bulkDelete') }}" id="bulk-delete-form">
+                           {{-- <form method="POST" action="{{ route('items.bulkDelete') }}" id="bulk-delete-form">
                                 @csrf
-                                @method('DELETE')
+                                @method('DELETE') --}}
                                 <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                     <table class="table my-0" id="dataTable">
                                         <thead>
                                         <tr>
-                                            <th><input type="checkbox" id="select-all"></th>
+                                         {{--   <th><input type="checkbox" id="select-all"></th> --}}
                                             <th style="width: 200px;">ARTICLE/ITEM</th>
                                             <th style="width: 220px;">DESCRIPTION/BRAND</th>
                                             <th style="width: 220px;">PROPERTY NUMBER</th>
@@ -110,13 +110,13 @@
                                             <th style="width: 200PX;">P.O. NUMBER</th>
                                             <th style="width: 300PX;">DEALER</th>
                                             <th style="width: 200PX;">DATE ACQUIRED</th>
-                                            <th style="width: 150px;">ACTIONS</th>
+                                           {{-- <th style="width: 150px;">ACTIONS</th> --}}
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($items as $item)
                                             <tr>
-                                                <td><input type="checkbox" name="ids[]" value="{{ $item->id }}"></td>
+                                               {{-- <td><input type="checkbox" name="ids[]" value="{{ $item->id }}"></td> --}}
                                                 <td>{{ $item->name }}</td>
                                                 <td>{{ $item->brand }}</td>
                                                 <td>{{ $item->property_number }}</td>
@@ -129,24 +129,24 @@
                                                 <td>{{ $item->po_number }}</td>
                                                 <td>{{ $item->dealer }}</td>
                                                 <td>{{ $item->date_acquired }}</td>
-                                                <td>
+                                             {{--   <td>
                                                     <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>
                                                     <form action="{{ route('item.destroy', $item->id) }}" method="POST" style="display:inline-block;">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
                                                     </form>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px;background: navy; border: navy;"><i class="fas fa-trash-alt"></i></button>
+                             {{--   <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px;background: navy; border: navy;"><i class="fas fa-trash-alt"></i></button>
                             </form>
                         </div>
 
-                        <script>
+                        {{--<script>
                             document.getElementById('select-all').onclick = function() {
                                 var checkboxes = document.querySelectorAll('input[name="ids[]"]');
                                 for (var checkbox of checkboxes) {
