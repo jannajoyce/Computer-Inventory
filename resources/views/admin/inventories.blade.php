@@ -42,7 +42,7 @@
                 <div class="container-fluid">
                     <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;">
                     </form>
-                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" onclick="window.open('{{ route('adminInventories.print') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
+                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" onclick="window.open('{{ route('adminInventories.print', ['accountname_with_accountcode' => request('accountname_with_accountcode')]) }}',  '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
                 </div>
             </nav>
             <div class="container-fluid">
@@ -53,15 +53,27 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <form method="GET" action="{{ route('admin.inventories') }}" class="d-inline-block">
+                                <form method="GET" action="{{ route('adminInventories.dropdown') }}" >
                                     <label class="form-label">Show&nbsp
-                                        <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
-                                            <option value="3" {{ request('per_page') == 3 ? 'selected' : '' }}>3</option>
-                                            <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
-                                            <option value="10" {{ request('per_page', 10) == 10 ? 'selected' : '' }}>10</option>
-                                            <option value="25" {{ request('per_page') == 25 ? 'selected' : '' }}>25</option>
-                                            <option value="50" {{ request('per_page') == 50 ? 'selected' : '' }}>50</option>
-                                            <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
+                                        <select name="accountname_with_accountcode" onchange="this.form.submit()" class="form-select form-select-sm d-inline-block">
+                                            <option value="">All</option>
+                                            <option value="ICT/1-06-05-030" {{ request('accountname_with_accountcode') == 'ICT/1-06-05-030' ? 'selected' : '' }}>ICT/1-06-05-030</option>
+                                            <option value="Comms/1-06-05-070" {{ request('accountname_with_accountcode') == 'Comms/1-06-05-070' ? 'selected' : '' }}>Comms/1-06-05-070</option>
+                                            <option value="Office Equipment/1-06-05-020" {{ request('accountname_with_accountcode') == 'Office Equipment/1-06-05-020' ? 'selected' : '' }}>Office Equipment/1-06-05-020</option>
+                                            <option value="Machinery/1-06-05-010" {{ request('accountname_with_accountcode') == 'Machinery/1-06-05-010' ? 'selected' : '' }}>Machinery/1-06-05-010</option>
+                                            <option value="Other Structures/1-06-04-990" {{ request('accountname_with_accountcode') == 'Other Structures/1-06-04-990' ? 'selected' : '' }}>Other Structures/1-06-04-990</option>
+                                            <option value="BLDG/1-06-04-010" {{ request('accountname_with_accountcode') == 'BLDG/1-06-04-010' ? 'selected' : '' }}>BLDG/1-06-04-010</option>
+                                            <option value="Comms Network/1-06-03-060" {{ request('accountname_with_accountcode') == 'Comms Network/1-06-03-060' ? 'selected' : '' }}>Comms Network/1-06-03-060</option>
+                                            <option value="Power Supply System/1-06-03-050" {{ request('accountname_with_accountcode') == 'Power Supply System/1-06-03-050' ? 'selected' : '' }}>Power Supply System/1-06-03-050</option>
+                                            <option value="Construction and Heavy Equipment/1-06-05-080" {{ request('accountname_with_accountcode') == 'Construction and Heavy Equipment/1-06-05-080' ? 'selected' : '' }}>Construction and Heavy Equipment/1-06-05-080</option>
+                                            <option value="Firearms(Regular)/1-06-05-100" {{ request('accountname_with_accountcode') == 'Firearms(Regular)/1-06-05-100' ? 'selected' : '' }}>Firearms(Regular)/1-06-05-100</option>
+                                            <option value="Firearms(Modernization)/1-06-05-100" {{ request('accountname_with_accountcode') == 'Firearms(Modernization)/1-06-05-100' ? 'selected' : '' }}>Firearms(Modernization)/1-06-05-100</option>
+                                            <option value="Technical & Scientific Equipment/1-06-05-140" {{ request('accountname_with_accountcode') == 'Technical & Scientific Equipment/1-06-05-140' ? 'selected' : '' }}>Technical & Scientific Equipment/1-06-05-140</option>
+                                            <option value="Vehicles/1-06-06-010" {{ request('accountname_with_accountcode') == 'Vehicles/1-06-06-010' ? 'selected' : '' }}>Vehicles/1-06-06-010</option>
+                                            <option value="Vehicles(Modernization)/1-06-06-010" {{ request('accountname_with_accountcode') == 'Vehicles(Modernization)/1-06-06-010' ? 'selected' : '' }}>Vehicles(Modernization)/1-06-06-010</option>
+                                            <option value="Furniture/1-06-07-010" {{ request('accountname_with_accountcode') == 'Furniture/1-06-07-010' ? 'selected' : '' }}>Furniture/1-06-07-010</option>
+                                            <option value="Other property plant & equipment/1-06-99-990" {{ request('accountname_with_accountcode') == 'Other property plant & equipment/1-06-99-990' ? 'selected' : '' }}>Other property plant & equipment/1-06-99-990</option>
+                                            <option value="Computer Software/1-08-01-020" {{ request('accountname_with_accountcode') == 'Computer Software/1-08-01-020' ? 'selected' : '' }}>Computer Software/1-08-01-020</option>
                                         </select>&nbsp
                                     </label>
                                 </form>
@@ -97,8 +109,11 @@
                                         <th style="width: 150PX;">REMARKS</th>
                                         <th style="width: 200PX;">P.O. NUMBER</th>
                                         <th style="width: 300PX;">DEALER</th>
+                                        <th style="width: 250PX;">MODE OF PROCUREMENT</th>
+                                        <th style="width: 400PX;">ACCOUNT NAME W/ ACCOUNT CODE</th>
                                         <th style="width: 200PX;">DATE ACQUIRED</th>
-                                        <th style="width: 150px;">ACTIONS</th>
+                                        <th style="width: 200PX;">DATE ISSUED</th>
+                                        <th style="width: 250px;">ACTIONS</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -115,7 +130,10 @@
                                             <td>{{ $item->remarks }}</td>
                                             <td>{{ $item->po_number }}</td>
                                             <td>{{ $item->dealer }}</td>
+                                            <td>{{ $item->mode_of_procurement }}</td>
+                                            <td>{{ $item->accountname_with_accountcode }}</td>
                                             <td>{{ $item->date_acquired }}</td>
+                                            <td>{{ $item->date_issued }}</td>
                                             <td>
                                                 <a href="{{ route('admin.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>
                                                 <form action="{{ route('admin.destroy', $item->id) }}" method="POST" style="display:inline-block;">

@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
                             <div class="flex-grow-1 bg-login-image" style="background-image: url{{ ('/avatars/clipboard-image.png') }}">
-                                <img src="{{ asset('img/IMG-728981c8773d729fb40c4e16bfcef3f5-V.jpg') }}" style="margin-right: 0PX;margin-left: 31px;width: 480PX;margin-bottom: 0PX;margin-top: 2px;padding-right: 7PX;">
+                                <img src="{{ asset('img/adminlogin.png') }}" style="margin-right: 0PX;margin-left: 31px;width: 480PX;margin-bottom: 0PX;margin-top: 2px;padding-right: 7PX;">
                             </div>
                         </div>
                         <div class="col-lg-6">

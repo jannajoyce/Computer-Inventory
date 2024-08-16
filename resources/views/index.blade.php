@@ -109,7 +109,9 @@
                                             <th style="width: 150PX;">REMARKS</th>
                                             <th style="width: 200PX;">P.O. NUMBER</th>
                                             <th style="width: 300PX;">DEALER</th>
+                                            <th style="width: 250PX;">MODE OF PROCUREMENT</th>
                                             <th style="width: 200PX;">DATE ACQUIRED</th>
+                                            <th style="width: 200PX;">DATE ISSUED</th>
                                            {{-- <th style="width: 150px;">ACTIONS</th> --}}
                                         </tr>
                                         </thead>
@@ -128,32 +130,14 @@
                                                 <td>{{ $item->remarks }}</td>
                                                 <td>{{ $item->po_number }}</td>
                                                 <td>{{ $item->dealer }}</td>
+                                                <td>{{ $item->mode_of_procurement }}</td>
                                                 <td>{{ $item->date_acquired }}</td>
-                                             {{--   <td>
-                                                    <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>
-                                                    <form action="{{ route('item.destroy', $item->id) }}" method="POST" style="display:inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
-                                                    </form>
-                                                </td> --}}
+                                                <td>{{ $item->date_issued }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                             {{--   <button type="submit" class="btn btn-danger btn-sm" style="margin-top: 10px;background: navy; border: navy;"><i class="fas fa-trash-alt"></i></button>
-                            </form>
-                        </div>
-
-                        {{--<script>
-                            document.getElementById('select-all').onclick = function() {
-                                var checkboxes = document.querySelectorAll('input[name="ids[]"]');
-                                for (var checkbox of checkboxes) {
-                                    checkbox.checked = this.checked;
-                                }
-                            }
-                        </script>
 
                         {{--                                {{ $items->links() }}--}}
                             </div>

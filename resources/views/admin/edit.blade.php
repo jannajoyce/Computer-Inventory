@@ -74,24 +74,61 @@
                             </div>
                             <div class="mb-3">
                                 <label for="condition" class="form-label">Condition</label>
-                                <select class="form-control" id="condition" name="condition" style="margin-bottom: 15px;">
-                                    <option value="Operating" {{ $item->condition == 'Operating' ? 'selected' : '' }}>Operating</option>
-                                    <option value="Not Operating" {{ $item->condition == 'Not Operating' ? 'selected' : '' }}>Not Operating</option>
+                                <select class="form-control" id="condition" name="condition" style="margin-bottom: 15px;" onchange="toggleRemarks()">
+                                    <option value="" disabled selected>Please Select...</option>
+                                    <option value="Operating">Operating</option>
+                                    <option value="Not Operating">Not Operating</option>
                                 </select>
                                 @error('condition')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" id="remarks-container">
                                 <label for="remarks" class="form-label">Remarks</label>
                                 <select class="form-control" id="remarks" name="remarks" style="margin-bottom: 15px;">
-                                    <option value="BER">BER</option>
-                                    <option value="For Turn In">For Turn In</option>
+
                                 </select>
                                 @error('remarks')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
+                            <script>
+                                function toggleRemarks() {
+                                    var condition = document.getElementById('condition').value;
+                                    var remarks = document.getElementById('remarks');
+
+                                    remarks.innerHTML = '';
+
+                                    if (condition === 'Operating') {
+
+                                        var option = document.createElement('option');
+                                        option.value = '';
+                                        option.textContent = '';
+                                        remarks.appendChild(option);
+                                    } else if (condition === 'Not Operating') {
+
+                                        var placeholderOption = document.createElement('option');
+                                        placeholderOption.value = '';
+                                        placeholderOption.disabled = true;
+                                        placeholderOption.selected = true;
+                                        placeholderOption.textContent = 'Please Select';
+                                        remarks.appendChild(placeholderOption);
+
+                                        var option1 = document.createElement('option');
+                                        option1.value = 'BER';
+                                        option1.textContent = 'BER';
+                                        remarks.appendChild(option1);
+
+                                        var option2 = document.createElement('option');
+                                        option2.value = 'For Turn In';
+                                        option2.textContent = 'For Turn In';
+                                        remarks.appendChild(option2);
+                                    }
+                                }
+
+
+                                document.addEventListener('DOMContentLoaded', toggleRemarks);
+                            </script>
 
                             <div class="mb-3">
                                 <label for="po_number" class="form-label">P.O. Number</label>
@@ -108,9 +145,57 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label for="mode_of_procurement" class="form-label">Mode of Procurement</label>
+                                <select class="form-control" id="mode_of_procurement" name="mode_of_procurement" style="margin-bottom: 15px;">
+                                    <option value="" disabled selected>Please Select...</option>
+                                    <option value="Capital Outlay">Capital Outlay</option>
+                                    <option value="Capitalization">Capitalization</option>
+                                    <option value="Semi Expandable">Semi Expandable</option>
+                                    <option value="Transfer">Transfer</option>
+                                    <option value="Donation">Donation</option>
+                                    <option value="Negotiated">Negotiated</option>
+                                </select>
+                                @error('mode_of_procurement')
+                                <span class="text-danger"> {{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="accountname_with_accountcode" class="form-label">Account Name w/ Account Code</label>
+                                <select class="form-control" id="accountname_with_accountcode" name="accountname_with_accountcode" style="margin-bottom: 15px;">
+                                    <option value="" disabled selected>Please Select...</option>
+                                    <option value="ICT/1-06-05-030">ICT/1-06-05-030</option>
+                                    <option value="Comms/1-06-05-070">Comms/1-06-05-070</option>
+                                    <option value="Office Equipment/1-06-05-020">Office Equipment/1-06-05-020</option>
+                                    <option value="Machinery/1-06-05-010">Machinery/1-06-05-010</option>
+                                    <option value="Other Structures/1-06-04-990">Other Structures/1-06-04-990</option>
+                                    <option value="BLDG/1-06-04-010">BLDG/1-06-04-010</option>
+                                    <option value="Comms Network/1-06-03-060">Comms Network/1-06-03-060</option>
+                                    <option value="Power Supply System/1-06-03-050">Power Supply System/1-06-03-050</option>
+                                    <option value="Construction and Heavy Equipment/1-06-05-080">Construction and Heavy Equipment/1-06-05-080</option>
+                                    <option value="Firearms(Regular)/1-06-05-100">Firearms(Regular)/1-06-05-100</option>
+                                    <option value="Firearms(Modernization)/1-06-05-100">Firearms(Modernization)/1-06-05-100</option>
+                                    <option value="Technical & Scientific Equipment/1-06-05-140">Technical & Scientific Equipment/1-06-05-140</option>
+                                    <option value="Vehicles/1-06-06-010">Vehicles/1-06-06-010</option>
+                                    <option value="Vehicles(Modernization)/1-06-06-010">Vehicles(Modernization)/1-06-06-010</option>
+                                    <option value="Furniture/1-06-07-010">Furniture/1-06-07-010</option>
+                                    <option value="Other property plant & equipment/1-06-99-990">Other property, plant & equipment/1-06-99-990</option>
+                                    <option value="Computer Software/1-08-01-020">Computer Software/1-08-01-020</option>
+                                </select>
+                                @error('accountname_with_accountcode')
+                                <span class="text-danger"> {{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label for="date_acquired" class="form-label">Date Acquired</label>
                                 <input class="form-control" type="date" id="date_acquired" name="date_acquired" value="{{ $item->date_acquired }}" style="margin-bottom: 15px;">
                                 @error('date_acquired')
+                                <span class="text-danger"> {{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="date_issued" class="form-label">Date Issued</label>
+                                <input class="form-control" type="date" id="date_issued" name="date_issued" style="margin-bottom: 15px;">
+                                @error('date_issued')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>

@@ -25,7 +25,10 @@ return new class extends Migration
             $table->string('remarks');
             $table->string('po_number');
             $table->string('dealer');
+            $table->string('mode_of_procurement');
+            $table->string('accountname_with_accountcode')->nullable();
             $table->dateTime('date_acquired');
+            $table->dateTime('date_issued');
             $table->timestamps();
         });
     }

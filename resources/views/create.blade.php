@@ -71,7 +71,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="condition" class="form-label">Condition</label>
-                                <select class="form-control" id="condition" name="condition" style="margin-bottom: 15px;">
+                                <select class="form-control" id="condition" name="condition" style="margin-bottom: 15px;" onchange="toggleRemarks()">
+                                    <option value="" disabled selected>Please Select...</option>
                                     <option value="Operating">Operating</option>
                                     <option value="Not Operating">Not Operating</option>
                                 </select>
@@ -79,16 +80,55 @@
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" id="remarks-container">
                                 <label for="remarks" class="form-label">Remarks</label>
                                 <select class="form-control" id="remarks" name="remarks" style="margin-bottom: 15px;">
-                                    <option value="BER">BER</option>
-                                    <option value="For Turn In">For Turn In</option>
+
                                 </select>
                                 @error('remarks')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
+                            <script>
+                                function toggleRemarks() {
+                                    var condition = document.getElementById('condition').value;
+                                    var remarks = document.getElementById('remarks');
+
+                                    remarks.innerHTML = '';
+
+                                    if (condition === 'Operating') {
+
+                                        var option = document.createElement('option');
+                                        option.value = '';
+                                        option.disabled = true;
+                                        option.selected = true;
+                                        option.textContent = '';
+                                        remarks.appendChild(option);
+                                    } else if (condition === 'Not Operating') {
+
+                                        var placeholderOption = document.createElement('option');
+                                        placeholderOption.value = '';
+                                        placeholderOption.disabled = true;
+                                        placeholderOption.selected = true;
+                                        placeholderOption.textContent = 'Please Select';
+                                        remarks.appendChild(placeholderOption);
+
+                                        var option1 = document.createElement('option');
+                                        option1.value = 'BER';
+                                        option1.textContent = 'BER';
+                                        remarks.appendChild(option1);
+
+                                        var option2 = document.createElement('option');
+                                        option2.value = 'For Turn In';
+                                        option2.textContent = 'For Turn In';
+                                        remarks.appendChild(option2);
+                                    }
+                                }
+
+
+                                document.addEventListener('DOMContentLoaded', toggleRemarks);
+                            </script>
+
                             <div class="mb-3">
                                 <label for="po_number" class="form-label">P.O. Number</label>
                                 <input class="form-control" type="text" id="po_number" name="po_number" placeholder="Enter P.O. Number" style="margin-bottom: 15px;">
@@ -104,9 +144,31 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label for="mode_of_procurement" class="form-label">Mode of Procurement</label>
+                                <select class="form-control" id="mode_of_procurement" name="mode_of_procurement" style="margin-bottom: 15px;">
+                                    <option value="" disabled selected>Please Select...</option>
+                                    <option value="Capital Outlay">Capital Outlay</option>
+                                    <option value="Capitalization">Capitalization</option>
+                                    <option value="Semi Expandable">Semi Expandable</option>
+                                    <option value="Transfer">Transfer</option>
+                                    <option value="Donation">Donation</option>
+                                    <option value="Negotiated">Negotiated</option>
+                                </select>
+                                @error('mode_of_procurement')
+                                <span class="text-danger"> {{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label for="date_acquired" class="form-label">Date Acquired</label>
                                 <input class="form-control" type="date" id="date_acquired" name="date_acquired" style="margin-bottom: 15px;">
                                 @error('date_acquired')
+                                <span class="text-danger"> {{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="date_issued" class="form-label">Date Issued</label>
+                                <input class="form-control" type="date" id="date_issued" name="date_issued" style="margin-bottom: 15px;">
+                                @error('date_issued')
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>

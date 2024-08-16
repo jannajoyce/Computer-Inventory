@@ -21,7 +21,10 @@ class Item extends Model
         'remarks',
         'po_number',
         'dealer',
+        'mode_of_procurement',
+        'accountname_with_accountcode',
         'date_acquired',
+        'date_issued',
     ];
 
     public function admin()

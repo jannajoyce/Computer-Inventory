@@ -61,8 +61,6 @@
 <div class="container">
     <h1>Inventory Report</h1>
     <p>Date: {{ \Carbon\Carbon::now()->format('F j, Y') }}</p>
-    @foreach ($users as $user)
-        <h2>Inventory Report for {{ $user->name }}</h2>
         <table border="1" cellpadding="5" cellspacing="0">
             <thead>
         <tr>
@@ -77,11 +75,14 @@
             <th>REMARKS</th>
             <th>P.O. NUMBER</th>
             <th>DEALER</th>
+            <th>MODE OF PROCUREMENT</th>
+            <th>ACCOUNT NAME W/ ACCOUNT CODE</th>
             <th>DATE ACQUIRED</th>
+            <th>DATE ISSUED</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($user->user_items as $item)
+        @foreach ($items as $item)
             <tr>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->brand }}</td>
@@ -94,17 +95,14 @@
                 <td>{{ $item->remarks }}</td>
                 <td>{{ $item->po_number }}</td>
                 <td>{{ $item->dealer }}</td>
+                <td>{{ $item->mode_of_procurement }}</td>
+                <td>{{ $item->accountname_with_accountcode }}</td>
                 <td>{{ $item->date_acquired }}</td>
+                <td>{{ $item->date_issued }}</td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    @endforeach
 </div>
-<script>
-    window.onload = function() {
-        window.print();
-    };
-</script>
 </body>
 </html>
