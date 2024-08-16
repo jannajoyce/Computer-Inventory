@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Admin Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap') }}">
 </head>
@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-lg-6 d-none d-lg-flex">
                             <div class="flex-grow-1 bg-login-image" style="background-image: url{{ ('/avatars/clipboard-image.png') }}">
-                                <img src="{{ asset('img/adminlogin.jpg') }}" style="margin-right: 0PX;margin-left: 31px;width: 480PX; height: 480px; margin-bottom: 0PX;margin-top: 2px;padding-right: 7PX;">
+                                <img src="{{ asset('img/IMG-728981c8773d729fb40c4e16bfcef3f5-V.jpg') }}" style="margin-right: 0PX;margin-left: 31px;width: 480PX;margin-bottom: 0PX;margin-top: 2px;padding-right: 7PX;">
                             </div>
                         </div>
                         <div class="col-lg-6">
