@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="{{url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap')}}">
     <link rel="stylesheet" href="{{asset('fonts/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('fonts/ionicons.min.css')}}">
+    <style>
+        #print-button {
+            position: absolute;
+            top: 16px; /* Adjust top margin as needed */
+            right: 20px; /* Adjust left margin as needed */
+            z-index: 1000; /* Ensure it stays on top of other content */
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -36,16 +44,11 @@
             <div class="text-center d-none d-md-inline"></div>
         </div>
     </nav>
-    <div class="d-flex flex-column" id="content-wrapper">
-        <div id="content">
-            <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
-                <div class="container-fluid">
-                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;">
-                    </form>
-                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" onclick="window.open('{{ route('adminInventories.print', ['accountname_with_accountcode' => request('accountname_with_accountcode')]) }}',  '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
-                </div>
-            </nav>
-            <div class="container-fluid">
+    <div class="position-relative d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/5fa4da31b6c3a4385dfd4000_Philippine-navy-ships.jpeg') }}'); background-size: cover; background-position: center;">
+        <div id="print-button">
+            <button class="btn btn-primary" type="button" onclick="window.open('{{ route('adminInventories.print', ['accountname_with_accountcode' => request('accountname_with_accountcode')]) }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button>
+        </div>
+            <div class="container-fluid" style="padding-top: 60px;">
                 <div class="card shadow">
                     <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">Computer Inventories</span></p>
@@ -167,11 +170,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © LogWeb 2024</span></div>
-                </div>
-            </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>

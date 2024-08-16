@@ -48,11 +48,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
+                    <div class="col-md-6 col-xl-3 mb-4" style="width: 332px">
                         <div class="card shadow border-start-success py-2">
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
-                                    <div class="col-xxl-11 me-2" style="width: 310px;">
+                                    <div class="col-xxl-11 me-2" style="width: 332px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL USERS</span></div>
                                         <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ number_format($totalUsers) }}</span></span></div>
                                     </div>
@@ -61,11 +61,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
+                    <div class="col-md-6 col-xl-3 mb-4" style="width: 332px">
                         <div class="card shadow border-start-success py-2">
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
-                                    <div class="col-xxl-11 me-2" style="width: 315px;">
+                                    <div class="col-xxl-11 me-2" style="width: 332px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">RECENT ITEM ADDITIONS (Today)</span></div>
                                         <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $itemsAddedToday }}</span></span></div>
                                     </div>
@@ -74,11 +74,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
+                    <div class="col-md-6 col-xl-3 mb-4" style="width: 332px">
                         <div class="card shadow border-start-success py-2">
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
-                                    <div class="col-xxl-11 me-2" style="width:315px;">
+                                    <div class="col-xxl-11 me-2" style="width:332px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL QUANTITY OF ITEMS</span></div>
                                         <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $totalQuantityItems }}</span></span></div>
                                     </div>
@@ -87,11 +87,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
+                    <div class="col-md-6 col-xl-3 mb-4" style="width: 332px">
                         <div class="card shadow border-start-success py-2">
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
-                                    <div class="col-xxl-11 me-2" style="width: 315px;">
+                                    <div class="col-xxl-11 me-2" style="width: 332px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL QUANTITY OF OPERATING ITEMS</span></div>
                                         <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $operatingItems }}</span></span></div>
 
@@ -101,11 +101,11 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
+                    <div class="col-md-6 col-xl-3 mb-4" style="width: 332px">
                         <div class="card shadow border-start-success py-2">
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
-                                    <div class="col-xxl-11 me-2" style="width: 315px;">
+                                    <div class="col-xxl-11 me-2" style="width: 332px;">
                                         <div class="text-uppercase text-success fw-bold text-xs mb-1"><span style="color: rgb(0, 0, 128);">TOTAL QUANTITY OF NOT OPERATING ITEMS</span></div>
                                         <div class="text-dark fw-bold h5 mb-0"><span><span style="color: rgb(133, 135, 150);">{{ $notOperatingItems }}</span></span></div>
                                     </div>
