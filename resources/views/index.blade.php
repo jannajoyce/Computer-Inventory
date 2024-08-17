@@ -38,16 +38,21 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column" id="content-wrapper">
+    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/5fa4da31b6c3a4385dfd4000_Philippine-navy-ships.jpeg') }}'); background-size: cover; background-position: center;">
         <div id="content">
-            <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
-                <div class="container-fluid">
-                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;">
-                        <div class="input-group" style="width: 300px;"><a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{route('item.create')}}">ADD NEW ITEM</a></div>
-                    </form>
-                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" onclick="window.open('{{ route('printInventory.index') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
+            <div class="d-flex flex-row" style="padding: 20px;">
+                <!-- Left-aligned button -->
+                <div class="p-2" style="width: 300px;">
+                    <a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{ route('item.create') }}">ADD NEW ITEM</a>
                 </div>
-            </nav>
+
+                <!-- Right-aligned button with alignment to card edge -->
+                <div class="p-2 ms-auto" style="width: 300px; margin-right: -205px;">
+                    <button class="btn btn-primary" type="button" onclick="window.open('{{ route('printInventory.index') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button>
+                </div>
+            </div>
+
+
 
             <div class="container-fluid">
                 <div class="card shadow">

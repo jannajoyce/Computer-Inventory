@@ -40,7 +40,7 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/adminlogin.png') }}'); background-size: cover; background-position: center;">>
+    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/adminlogin.png') }}'); background-size: cover; background-position: center;">
         <div id="content">
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-top: 32px;">
