@@ -38,15 +38,12 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/5fa4da31b6c3a4385dfd4000_Philippine-navy-ships.jpeg') }}'); background-size: cover; background-position: center;">
+    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/wp4213758.jpg') }}'); background-size: cover; background-position: center;">
         <div id="content">
             <div class="d-flex flex-row" style="padding: 20px;">
-                <!-- Left-aligned button -->
                 <div class="p-2" style="width: 300px;">
                     <a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{ route('item.create') }}">ADD NEW ITEM</a>
                 </div>
-
-                <!-- Right-aligned button with alignment to card edge -->
                 <div class="p-2 ms-auto" style="width: 300px; margin-right: -205px;">
                     <button class="btn btn-primary" type="button" onclick="window.open('{{ route('printInventory.index') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button>
                 </div>

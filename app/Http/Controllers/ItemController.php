@@ -83,6 +83,11 @@ class ItemController extends Controller
     public function print()
     {
         $items = Item::all(); // Or use any method to get the items you want to print
+        $user = Auth::user();
+        Activity::create([
+            'user_id' => $user->id,
+            'description' => 'printed the inventory',
+        ]);
         return view('print_inventory', compact('items'));
     }
 

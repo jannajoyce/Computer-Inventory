@@ -58,14 +58,14 @@ Route::middleware(['auth:admin'])->group(function () {
 
 //Users
 Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/users', [UserController::class, 'usersIndex'])->name('admin.users');
+    Route::get('admin/users', [UserController::class, 'usersIndex'])->name('admin.users');
     Route::get('admin/users/dropdown', [ItemController::class, 'adminUsers_dropdown'])->name('adminUsers.dropdown');
     Route::get('admin/users/search', [ItemController::class, 'adminUsers_search'])->name('adminUsers.search');
 });
 
 //Activities
 Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/activities', [UserController::class, 'activities'])->name('admin.activities');
+    Route::get('admin/activities', [UserController::class, 'activities'])->name('admin.activities');
 });
 
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap')}}">
 </head>
 
-<body class="bg-gradient-primary" style="background: var(--bs-body-color);height: 540px;">
+<body class="bg-gradient-primary" style="background-image: url('{{ asset('img/adminlogin.png') }}'); background-size: cover; background-position: center;">
 <section class="position-relative py-4 py-xl-5">
     <div class="container position-relative">
         <div class="row d-flex justify-content-center" style="padding-bottom: 0px;padding-top: 150px;">
