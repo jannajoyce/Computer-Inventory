@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{asset('fonts/ionicons.min.css')}}">
 </head>
 
-<body id="page-top">
+<div id="page-top">
 <div id="wrapper">
     <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark" style="background: rgb(133, 135, 150);">
         <div class="container-fluid d-flex flex-column p-0">
@@ -37,11 +37,8 @@
             <div class="text-center d-none d-md-inline"></div>
         </div>
     </nav>
-
-
-
-                    {{--}}List of Users--}}
-                <div class="container-fluid">
+    <div class="position-relative d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/BRP-Jose-Rizal-HHI.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="container-fluid" style="padding-top: 60px;">
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <p class="text-primary m-0 fw-bold" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">List of Users</span></p>
@@ -130,19 +127,13 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © LogWeb 2024</span></div>
-                </div>
-            </footer>
+
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
+</div>
+</div>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/bs-init.js')}}"></script>
     <script src="{{asset('js/theme.js')}}"></script>
-</div>
-</div>
-</body>
-
 
 </html>

@@ -51,18 +51,21 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('admin/inventories/dropdown', [ItemController::class, 'adminInventories_dropdown'])->name('adminInventories.dropdown');
     Route::get('admin/inventories/search', [ItemController::class, 'adminInventories_search'])->name('adminInventories.search');
     Route::get('admin/inventories/print', [ItemController::class, 'adminInventories_print'])->name('adminInventories.print');
+    Route::get('admin/{item}/edit', [ItemController::class, 'edit'])->name('admin.edit');
+    Route::put('admin/{item}', [ItemController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/{item}', [ItemController::class, 'destroy'])->name('admin.destroy');
 });
 
 //Users
 Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/users', [UserController::class, 'usersIndex'])->name('admin.users');
+    Route::get('admin/users', [UserController::class, 'usersIndex'])->name('admin.users');
     Route::get('admin/users/dropdown', [ItemController::class, 'adminUsers_dropdown'])->name('adminUsers.dropdown');
     Route::get('admin/users/search', [ItemController::class, 'adminUsers_search'])->name('adminUsers.search');
 });
 
 //Activities
 Route::middleware(['auth:admin'])->group(function () {
-    Route::get('/activities', [UserController::class, 'activities'])->name('admin.activities');
+    Route::get('admin/activities', [UserController::class, 'activities'])->name('admin.activities');
 });
 
 

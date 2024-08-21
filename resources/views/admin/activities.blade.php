@@ -36,8 +36,8 @@
             <div class="text-center d-none d-md-inline"></div>
         </div>
     </nav>
-    <div class="d-flex flex-column" id="content-wrapper">
-        <div id="content">
+    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/BRP-AntonionLuna-PHILIPPINE-NAVY.jpg') }}'); background-size: cover; background-position: center;">
+        <div id="content" style="padding-top: 60px;">
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header py-3">
@@ -84,11 +84,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © LogWeb 2024</span></div>
-                </div>
-            </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>

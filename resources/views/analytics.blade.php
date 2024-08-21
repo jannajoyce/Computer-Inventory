@@ -38,17 +38,16 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column" id="content-wrapper">
+    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/adminlogin.png') }}'); background-size: cover; background-position: center;">
         <div id="content">
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4" style="margin-top: 32px;">
-                    <h3 class="text-dark mb-0" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">Dashboard</span></h3>
-                    <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#" style="color: rgb(255, 255, 255);background: rgb(0, 0, 128);"><i class="fas fa-download fa-sm text-white-50" style="color: rgb(133, 135, 150);"></i>&nbsp;Generate Report</a>
+                    <h3 class="text-dark mb-0" style="color: navy;"><span style="color: navy;">Dashboard</span></h3>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6 col-xl-3 mb-4" style="width: 315px">
-                        <div class="card shadow border-start-success py-2">
+                        <div class="card shadow border-start-success py-2" >
                             <div class="card-body">
                                 <div class="row align-items-center no-gutters">
                                     <div class="col-xxl-11 me-2" style="width: 310px;">
@@ -107,18 +106,6 @@
                                     <h6 class="text-primary fw-bold m-0" style="color: rgb(0, 0, 128);">
                                         <span style="color: rgb(0, 0, 128);">Items by Category Distribution</span>
                                     </h6>
-                                    <div class="dropdown no-arrow">
-                                        <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                                            <i class="fas fa-ellipsis-v text-gray-400"></i>
-                                        </button>
-                                        <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                            <p class="text-center dropdown-header">Dropdown header:</p>
-                                            <a class="dropdown-item" href="#">&nbsp;Action</a>
-                                            <a class="dropdown-item" href="#">&nbsp;Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">&nbsp;Something else here</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="chart-area">
@@ -201,18 +188,6 @@
                             <h6 class="text-primary fw-bold m-0" style="color: rgb(0, 0, 128);">
                                 <span style="color: rgb(0, 0, 128);">Items by Location Distribution</span>
                             </h6>
-                            <div class="dropdown no-arrow">
-                                <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                                    <i class="fas fa-ellipsis-v text-gray-400"></i>
-                                </button>
-                                <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                    <p class="text-center dropdown-header">Dropdown header:</p>
-                                    <a class="dropdown-item" href="#">&nbsp;Action</a>
-                                    <a class="dropdown-item" href="#">&nbsp;Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">&nbsp;Something else here</a>
-                                </div>
-                            </div>
                         </div>
                         <div class="card-body">
                             <div class="chart-area">
@@ -287,13 +262,6 @@
                     });
                 });
             </script>
-
-
-            <footer class="bg-white sticky-footer" style="width: 1800px;">
-                        <div class="container my-auto" style="width: 1800px;">
-                            <div class="text-center my-auto copyright"><span>Copyright © LogWeb 2024</span></div>
-                        </div>
-                    </footer>
                 </div>
                 <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
             </div>

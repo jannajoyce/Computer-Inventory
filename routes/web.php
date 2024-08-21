@@ -33,11 +33,12 @@ Route::middleware('auth')->group(function () {
     Route::get('item/create', [ItemController::class, 'create'])->name('item.create');
     Route::post('item', [ItemController::class, 'store'])->name('item.store');
     Route::get('item/{item}', [ItemController::class, 'show'])->name('item.show');
-    Route::get('items/{item}/edit', [ItemController::class, 'edit'])->name('item.edit');
-    Route::put('item/{item}', [ItemController::class, 'update'])->name('item.update');
-    Route::delete('item/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
+ //   Route::get('items/{item}/edit', [ItemController::class, 'edit'])->name('item.edit');
+ //   Route::put('item/{item}', [ItemController::class, 'update'])->name('item.update');
+ //   Route::delete('item/{item}', [ItemController::class, 'destroy'])->name('item.destroy');
 
     Route::get('/search', [ItemController::class, 'search'])->name('search');
+    //Route::delete('/items/bulk-delete', [ItemController::class, 'bulkDelete'])->name('items.bulkDelete');
 
 
 //    Route::get('/logout', function () {

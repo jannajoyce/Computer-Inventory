@@ -72,7 +72,9 @@
             <th>REMARKS</th>
             <th>P.O. NUMBER</th>
             <th>DEALER</th>
+            <th>MODE OF PROCUREMENT</th>
             <th>DATE ACQUIRED</th>
+            <th>DATE ISSUED</th>
         </tr>
         </thead>
         <tbody>
@@ -89,7 +91,9 @@
                 <td>{{ $item->remarks }}</td>
                 <td>{{ $item->po_number }}</td>
                 <td>{{ $item->dealer }}</td>
+                <td>{{ $item->mode_of_procurement }}</td>
                 <td>{{ $item->date_acquired }}</td>
+                <td>{{ $item->date_issued }}</td>
             </tr>
         @endforeach
         </tbody>

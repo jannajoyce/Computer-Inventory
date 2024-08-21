@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap')}}">
     <link rel="stylesheet" href="{{asset('fonts/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('fonts/ionicons.min.css')}}">
+
 </head>
 
 <body id="page-top">
@@ -37,22 +38,25 @@
         </div>
     </nav>
 
-    <div class="d-flex flex-column" id="content-wrapper">
+    <div class="d-flex flex-column" id="content-wrapper" style="background-image: url('{{ asset('img/wp4213758.jpg') }}'); background-size: cover; background-position: center;">
         <div id="content">
-            <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
-                <div class="container-fluid">
-                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;">
-                        <div class="input-group" style="width: 300px;"><a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{route('item.create')}}">ADD NEW ITEM</a></div>
-                    </form>
-                    <div class="input-group" style="width: 300px;"><button class="btn btn-primary" type="button" onclick="window.open('{{ route('printInventory.index') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128); margin-right: 0px;margin-left: 200px;"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button></div>
+            <div class="d-flex flex-row" style="padding: 20px;">
+                <div class="p-2" style="width: 300px;">
+                    <a class="btn btn-primary" role="button" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);" href="{{ route('item.create') }}">ADD NEW ITEM</a>
                 </div>
-            </nav>
+                <div class="p-2 ms-auto" style="width: 300px; margin-right: -205px;">
+                    <button class="btn btn-primary" type="button" onclick="window.open('{{ route('printInventory.index') }}', '_blank', 'width=800,height=600');" style="background: rgb(0, 0, 128); border: rgb(0, 0, 128);"><i class="far fa-arrow-alt-circle-down"></i>&nbsp; PRINT</button>
+                </div>
+            </div>
+
+
 
             <div class="container-fluid">
                 <div class="card shadow">
                     <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold" style="color: rgb(133, 135, 150);"><span style="color: rgb(133, 135, 150);">Computer Inventories</span></p>
                     </div>
+
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
@@ -69,6 +73,7 @@
                                     </label>
                                 </form>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="text-md-end dataTables_filter" id="dataTable_filter">
                                     <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="margin-right: 0px;margin-left: 0px;padding-right: 0px;" method="GET" action="{{ route('search') }}">
@@ -83,58 +88,60 @@
 
                             @csrf
                             @if(session()->has('success'))
-                                <div class="alert alert-success mb-3" style="padding-top: 4px;padding-bottom: 4px; color: white; background: navy;" >
+                                <div class="alert alert-success mb-3" style="padding-top: 4px; padding-bottom: 4px; color: white; background: navy;">
                                     {{ session()->get('success') }}
                                 </div>
                             @endif
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
-                                    <thead>
-                                    <tr>
-                                        <th style="width: 200px;">ARTICLE/ITEM</th>
-                                        <th style="width: 220px;">DESCRIPTION/BRAND</th>
-                                        <th style="width: 220px;">PROPERTY NUMBER</th>
-                                        <th style="width: 150px;">UNIT</th>
-                                        <th style="width: 150px;">UNIT VALUE</th>
-                                        <th style="width: 150px;">QUANTITY</th>
-                                        <th style="width: 250px;">LOCATION</th>
-                                        <th style="width: 150PX;">CONDITION</th>
-                                        <th style="width: 150PX;">REMARKS</th>
-                                        <th style="width: 200PX;">P.O. NUMBER</th>
-                                        <th style="width: 300PX;">DEALER</th>
-                                        <th style="width: 200PX;">DATE ACQUIRED</th>
-                                        <th style="width: 150px;">ACTIONS</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach ($items as $item)
+                           {{-- <form method="POST" action="{{ route('items.bulkDelete') }}" id="bulk-delete-form">
+                                @csrf
+                                @method('DELETE') --}}
+                                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                                    <table class="table my-0" id="dataTable">
+                                        <thead>
                                         <tr>
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->brand }}</td>
-                                            <td>{{ $item->property_number }}</td>
-                                            <td>{{ $item->unit }}</td>
-                                            <td>{{ $item->unit_value }}</td>
-                                            <td>{{ $item->quantity }}</td>
-                                            <td>{{ $item->location }}</td>
-                                            <td>{{ $item->condition }}</td>
-                                            <td>{{ $item->remarks }}</td>
-                                            <td>{{ $item->po_number }}</td>
-                                            <td>{{ $item->dealer }}</td>
-                                            <td>{{ $item->date_acquired }}</td>
-                                            <td>
-                                                <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm" style="background: rgb(0, 0, 128); border: rgb(135, 135, 150);">Edit</a>
-                                                <form action="{{ route('item.destroy', $item->id) }}" method="POST" style="display:inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" style="background: rgb(135, 135, 150); border: rgb(135, 135, 150);"  onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
-                                                </form>
-                                            </td>
+                                         {{--   <th><input type="checkbox" id="select-all"></th> --}}
+                                            <th style="width: 200px;">ARTICLE/ITEM</th>
+                                            <th style="width: 220px;">DESCRIPTION/BRAND</th>
+                                            <th style="width: 220px;">PROPERTY NUMBER</th>
+                                            <th style="width: 150px;">UNIT</th>
+                                            <th style="width: 150px;">UNIT VALUE</th>
+                                            <th style="width: 150px;">QUANTITY</th>
+                                            <th style="width: 250px;">LOCATION</th>
+                                            <th style="width: 150PX;">CONDITION</th>
+                                            <th style="width: 150PX;">REMARKS</th>
+                                            <th style="width: 200PX;">P.O. NUMBER</th>
+                                            <th style="width: 300PX;">DEALER</th>
+                                            <th style="width: 250PX;">MODE OF PROCUREMENT</th>
+                                            <th style="width: 200PX;">DATE ACQUIRED</th>
+                                            <th style="width: 200PX;">DATE ISSUED</th>
+                                           {{-- <th style="width: 150px;">ACTIONS</th> --}}
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach ($items as $item)
+                                            <tr>
+                                               {{-- <td><input type="checkbox" name="ids[]" value="{{ $item->id }}"></td> --}}
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->brand }}</td>
+                                                <td>{{ $item->property_number }}</td>
+                                                <td>{{ $item->unit }}</td>
+                                                <td>{{ $item->unit_value }}</td>
+                                                <td>{{ $item->quantity }}</td>
+                                                <td>{{ $item->location }}</td>
+                                                <td>{{ $item->condition }}</td>
+                                                <td>{{ $item->remarks }}</td>
+                                                <td>{{ $item->po_number }}</td>
+                                                <td>{{ $item->dealer }}</td>
+                                                <td>{{ $item->mode_of_procurement }}</td>
+                                                <td>{{ $item->date_acquired }}</td>
+                                                <td>{{ $item->date_issued }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
 
-{{--                                {{ $items->links() }}--}}
+                        {{--                                {{ $items->links() }}--}}
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -153,18 +160,11 @@
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © LogWeb 2024</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </div>
+
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('js/bs-init.js')}}"></script>
     <script src="{{asset('js/theme.js')}}"></script>
-</div>
 </body>
-
 
 </html>
