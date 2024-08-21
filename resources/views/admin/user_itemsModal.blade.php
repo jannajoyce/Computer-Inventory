@@ -14,6 +14,7 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                         <tr>
+                            {{--   <th><input type="checkbox" id="select-all"></th> --}}
                             <th style="width: 200px;">ARTICLE/ITEM</th>
                             <th style="width: 220px;">DESCRIPTION/BRAND</th>
                             <th style="width: 220px;">PROPERTY NUMBER</th>
@@ -25,12 +26,16 @@
                             <th style="width: 150PX;">REMARKS</th>
                             <th style="width: 200PX;">P.O. NUMBER</th>
                             <th style="width: 300PX;">DEALER</th>
+                            <th style="width: 250PX;">MODE OF PROCUREMENT</th>
                             <th style="width: 200PX;">DATE ACQUIRED</th>
+                            <th style="width: 200PX;">DATE ISSUED</th>
+                            {{-- <th style="width: 150px;">ACTIONS</th> --}}
                         </tr>
                         </thead>
                         <tbody>
                         @foreach ($items as $item)
                             <tr>
+                                {{-- <td><input type="checkbox" name="ids[]" value="{{ $item->id }}"></td> --}}
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->brand }}</td>
                                 <td>{{ $item->property_number }}</td>
@@ -42,7 +47,9 @@
                                 <td>{{ $item->remarks }}</td>
                                 <td>{{ $item->po_number }}</td>
                                 <td>{{ $item->dealer }}</td>
+                                <td>{{ $item->mode_of_procurement }}</td>
                                 <td>{{ $item->date_acquired }}</td>
+                                <td>{{ $item->date_issued }}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('quantity');
             $table->string('location');
             $table->string('condition');
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
             $table->string('po_number');
             $table->string('dealer');
             $table->string('mode_of_procurement');

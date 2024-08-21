@@ -83,15 +83,17 @@
                                 <span class="text-danger"> {{ $message }}</span>
                                 @enderror
                             </div>
+
                             <div class="mb-3" id="remarks-container">
                                 <label for="remarks" class="form-label">Remarks</label>
                                 <select class="form-control" id="remarks" name="remarks" style="margin-bottom: 15px;">
-
+                                    <option value="" hidden>Select Condition First</option>
                                 </select>
                                 @error('remarks')
-                                <span class="text-danger"> {{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+
                             <script>
                                 function toggleRemarks() {
                                     var condition = document.getElementById('condition').value;
@@ -100,13 +102,15 @@
                                     remarks.innerHTML = '';
 
                                     if (condition === 'Operating') {
-
-                                        var option = document.createElement('option');
-                                        option.value = '';
-                                        option.textContent = '';
-                                        remarks.appendChild(option);
+                                        var placeholderOption = document.createElement('option');
+                                        placeholderOption.value = '';
+                                        placeholderOption.textContent = 'No remarks required';
+                                        remarks.appendChild(placeholderOption);
+                                        remarks.disabled = true;
+                                        remarks.value = '';
                                     } else if (condition === 'Not Operating') {
 
+                                        remarks.disabled = false;
                                         var placeholderOption = document.createElement('option');
                                         placeholderOption.value = '';
                                         placeholderOption.disabled = true;
@@ -125,7 +129,6 @@
                                         remarks.appendChild(option2);
                                     }
                                 }
-
 
                                 document.addEventListener('DOMContentLoaded', toggleRemarks);
                             </script>

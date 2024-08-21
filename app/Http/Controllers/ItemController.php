@@ -51,10 +51,18 @@ class ItemController extends Controller
             'quantity' => 'required',
             'location' => 'required',
             'condition' => 'required|in:Operating,Not Operating',
-            'remarks' => 'required|in:BER,For Turn In',
+            'remarks' => [
+                'nullable',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->input('condition') === 'Not Operating' && !$value) {
+                        $fail('Remarks are required when the condition is Not Operating.');
+                    }
+                },
+                'in:BER,For Turn In'
+            ],
             'po_number' => 'required',
             'dealer' => 'required',
-            'mode_of_procurement' => 'required|in:Capital Outlay, Capitalization, Semi Expandable, Transfer, Donation, Negotiated',
+            'mode_of_procurement' => 'required|in:Capital Outlay,Capitalization,Semi Expandable,Transfer,Donation,Negotiated',
             'date_acquired' => 'required',
             'date_issued' => 'required',
         ]);
@@ -202,7 +210,15 @@ class ItemController extends Controller
             'quantity' => 'required',
             'location' => 'required',
             'condition' => 'required|in:Operating,Not Operating',
-            'remarks' => 'required|in:BER,For Turn In',
+            'remarks' => [
+                'nullable',
+                function ($attribute, $value, $fail) use ($request) {
+                    if ($request->input('condition') === 'Not Operating' && !$value) {
+                        $fail('Remarks are required when the condition is Not Operating.');
+                    }
+                },
+                'in:BER,For Turn In'
+            ],
             'po_number' => 'required',
             'dealer' => 'required',
             'mode_of_procurement' => 'required|in:Capital Outlay,Capitalization,Semi Expandable,Transfer,Donation,Negotiated',
